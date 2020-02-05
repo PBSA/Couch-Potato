@@ -1,0 +1,23 @@
+leagues {
+    
+    .tab{
+        border-style: solid !important;
+        border-color: rgb(22, 22, 22) !important;
+        border-radius: 10px 0px 0px 10px !important;
+        font-size: 14pt;
+        cursor: pointer;
+    }
+
+    .tab-selected{
+        border-width: 0px 0px 1px 0px !important;
+        background-color:color($colors,dark-blue-grey);
+        color: color($colors,light);
+        font-weight: bold;
+    }
+
+    .tab-unselected{
+        border-width: 0px 1px 1px 0px !important;
+        background-color: color($colors,medium-grey);
+        color: color($colors, light);
+    }
+}

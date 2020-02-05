@@ -1,0 +1,20 @@
+<div style="height: 615px; padding-left: 30px">
+          <ion-grid no-padding>
+            <div *ngFor="let league of activeLeagues let i=index"  (click) = "leagueClick(league,i)"  > 
+                <ion-row >
+                    <ion-col no-padding>
+                      <div *ngIf="i==selectedLeagueTab">
+                          <ion-item no-lines class="tab tab-selected" ><img width="25" height="25" [src]= "league.icon">
+                            {{league.name}}      
+                          </ion-item>
+                      </div>
+                      <div *ngIf="i!=selectedLeagueTab">
+                          <ion-item no-lines class="tab tab-unselected" ><img width="25" height="25" [src]= "league.icon" >
+                            {{league.name}}      
+                          </ion-item>
+                      </div>
+                    </ion-col>
+                </ion-row>
+            </div> 
+        </ion-grid>
+  </div>

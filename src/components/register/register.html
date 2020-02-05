@@ -1,0 +1,36 @@
+
+
+<ion-content class="background-gradient">
+  <div style="text-align: right"><ion-icon (click)="dismiss()" end name="close-circle" class="icon"></ion-icon></div>
+    <ion-grid>
+      <ion-row no-padding style="height: 60px">
+        <ion-col col-12>
+            <div class="title">Create New Account</div>
+        </ion-col>
+      </ion-row>
+      <ion-row style="height:80px">
+        <ion-col class="proxy-caption" col-6>Data Proxy:</ion-col>
+        <ion-col class= "proxy-name" col-6>{{providerName}}</ion-col>
+      </ion-row>
+      <ion-row style="text-align: center">
+        <ion-col col-12><input input maxlength="24"[(ngModel)] = "userName" placeholder="User Name" class="input" ><span class="star">*</span></ion-col>
+      </ion-row>
+      <ion-row style="text-align: center">
+        <ion-col col-12><input type="Password" maxlength="40"[(ngModel)] = "password" placeholder="Password" class="input" ><span class="star">*</span></ion-col>
+      </ion-row>
+      <ion-row style="text-align: center">
+        <ion-col col-12><input #password2 input type="Password" maxlength="40" [(ngModel)] = "confirmPassword" placeholder="Confirm Password" class="input" ><span class="star">*</span></ion-col>
+      </ion-row>
+      <ion-row style="text-align: center">
+        <ion-col col-12><input input maxlength="60"[(ngModel)] = "email" placeholder="Email Address" class="input" ><span class="star">*</span></ion-col>
+      </ion-row>
+    </ion-grid>
+    <div style="text-align:center">
+      <span class="star">* </span><span class="small-text">Required fields</span>
+    </div>
+   
+    <div style="text-align: center; padding-top: 20px">
+      <button (click)='register()' ion-button>Register</button>
+    </div>
+</ion-content>
+

@@ -1,0 +1,82 @@
+replay {
+
+    .toolbar-background{
+        background-color: color($colors,light-blue);
+    }
+
+    .toolbar-title{
+        background-color: color($colors,light-blue);
+        color: color($colors,light);
+        padding-top: 0px;
+        //max-height: 30px;
+        font-size: 18pt;
+    }
+
+    .selectall{
+        background-color: color($colors,medium-blue);
+        color: color($colors,light);
+        font-size: 14pt;
+        font-weight: bold;
+    }
+
+    .closeicon{
+      font-size: 22pt;
+      cursor: pointer;
+      padding-left: 10px;
+      padding-right : 0px;
+      color: white;
+    }
+
+    .closeicon:hover{
+        color: color($colors,light-orange);
+    }
+
+    .icon{
+        height: 20px;
+        width: 20px;
+        margin: 12px 0px 0px 6px;
+      }
+
+    .date-label{
+        padding: 0px 0px 0px 10px !important;
+        max-width: 50px;
+        font-size: 11pt;
+        color: color($colors,dark) !important;
+    }
+
+    .date-col{
+        padding: 10px 0px 0px 10px !important;
+        width: 100px;
+        background-color: transparent;
+    }
+
+    .date-row{
+        background-color: color($colors,blue-white);
+    }
+
+    .date-input{
+        padding: 5px 10px 5px 10px !important;
+        font-size: 10pt;
+        background-color: color($colors,light);
+        min-width: 90px;
+        border-radius: 5px;
+        color: color($colors,dark);
+    }
+
+    .replay-button{
+        width: 25%;
+        border-radius: 5px;
+        height: 30px;
+        font-size: 10pt;
+        padding-right: 10px;
+    }
+
+    .replay-row{
+        padding: 5px;
+        background-color: color($colors,light-blue);
+        height: 45px;
+    }
+
+   
+}
+

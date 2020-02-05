@@ -1,0 +1,141 @@
+
+<ion-header >    
+    <ion-toolbar no-padding>
+      <ion-title> 
+          <ion-grid>
+              <ion-row>
+                    <ion-col col-1>
+                        <img class="icon" [src]= "activeLeague.icon" >
+                    </ion-col>
+                    <ion-col col-3 class="title-text">
+                        {{activeLeague.name}}
+                    </ion-col>
+                    <ion-col col-4 class="title-date">
+                        {{formattedDate}}
+                    </ion-col>
+                    <ion-col col-4 style="text-align: right">
+                        <ion-icon (click) = "dismiss()" class="closeicon" name="close-circle"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>         
+          </ion-title>
+        <!--Add column headers-->
+       <ion-grid no-padding>
+            <ion-row no-padding class="column-headers">
+                <ion-col  style="max-width: 10%">
+                    Start
+                </ion-col>
+                <ion-col style="max-width: 37%">
+                    Game
+                </ion-col>
+                <ion-col style="max-width: 7%;font-size: 9pt;">
+                        Home Score
+                </ion-col>
+                <ion-col style="max-width: 4%">
+                        
+                </ion-col>
+                <ion-col style="max-width: 7%;font-size: 9pt;">
+                        Away Score
+                </ion-col>
+                <ion-col style="max-width: 15%">
+                        Actions
+                </ion-col>
+                <ion-col style="max-width: 20%; text-align: center;">
+                        Status
+                </ion-col>
+            </ion-row>
+           
+        </ion-grid>
+      </ion-toolbar>
+</ion-header>
+    
+<ion-content class="content">
+    <div >  
+        <!-- add any games for this day-->
+        <div *ngFor="let event of events let y = index" >
+            <ion-grid>
+                <ion-row class="game-row">
+                    <ion-col class="game-col">
+                        {{event.starttime}}
+                    </ion-col>
+                    <ion-col style="padding-top: 15px; max-width: 40%">
+                        <ion-img start style="background-color: transparent" [src] ="getTeamIcon(event.hometeam)"></ion-img>
+                                {{event.hometeam}}  v {{event.awayteam}} 
+                        <ion-img end [src]="getTeamIcon(event.awayteam)" style="background-color: transparent"></ion-img>  
+                    </ion-col >
+                    <ion-col style="max-width: 6%;">                  
+                            <ion-input [(ngModel)] = "event.homescore" no-padding type="number" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>  
+                    </ion-col>
+                    <ion-col style="max-width: 5%; text-align: center">
+                            <ion-icon style="padding-top: 20px; padding-right: 10px" name="remove"></ion-icon>
+                    </ion-col>
+                    <ion-col style="max-width: 6%">
+                            <ion-input  [(ngModel)] = "event.awayscore" type="number" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>
+                    </ion-col>
+                    <ion-col style="max-width: 10%; text-align:center">
+                        <div *ngIf="isVisible(event) == false">
+                            <button ion-button  style="max-width: 100%" [class]="getFlowColor(event)" (click) = "changeStatus(event)" >{{getFlow(event)}}</button>
+                        </div>
+                    </ion-col>
+                    <ion-col style="max-width: 15%; text-align:center; padding-top:25px;">
+                            <ion-col col-6 class="actions" (click) = "cancelGame(event)">{{canCancel(event)}}</ion-col>
+                            <ion-col col-6 class="actions" (click) = "deleteGame(event)">{{canDelete(event)}}</ion-col>
+                    </ion-col>
+                    <ion-col style="max-width: 10%">
+                            <div class="status">{{event.name}}</div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer class="footer" >                     
+        <div >      
+            <ion-grid >
+                <ion-row>
+                    
+                </ion-row>
+                <ion-row>
+                    <ion-col col-2 style="padding-top: 15px">
+                        <ion-item no-lines class="team-item">
+                            <ion-label style="color:black; font-size: 10pt;">Start:</ion-label>
+                            <ion-datetime [(ngModel)] = "starttime" style="color:blue; font-size: 10pt;" displayFormat="h:mm A"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                    
+                    <ion-col col-4 style="padding-top: 15px">
+                            <ion-list>   
+                                <ion-item no-lines class="team-item">
+                                    <ion-label style="max-width:80px; color:black; font-size: 10pt;" no-padding >Home Team:</ion-label>
+                                        <ion-select   [(ngModel)] = "hometeam" interface="action-sheet" class="team-input">
+                                            <ion-option *ngFor="let team of teams">
+                                                {{team.name}}
+                                            </ion-option>
+                                        </ion-select>
+                                        
+                                </ion-item>
+                            </ion-list>
+                    </ion-col>
+                    <ion-col col-4 style="padding-top: 15px">
+                            <ion-list>   
+                                <ion-item no-lines class="team-item">
+                                    <ion-label class="ion-text-wrap" style="max-width:80px; color:black; font-size: 10pt;">Away Team:</ion-label>
+                                        <ion-select   [(ngModel)] = "awayteam"  interface="action-sheet" class="team-input">
+                                            <ion-option *ngFor="let team of teams">
+                                                {{team.name}}
+                                            </ion-option>
+                                        </ion-select>
+                                </ion-item>
+                            </ion-list>
+                    </ion-col>
+                    <ion-col col-1 style="padding-top: 15px">
+                            <button ion-button  class="add" (click) = "addGame()" >Add
+                                    <ion-icon style="margin-top: 30px; font-size: 16pt" name="add-circle"></ion-icon>
+                            </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+</ion-footer>
+

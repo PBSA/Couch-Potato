@@ -1,0 +1,21 @@
+{   
+    "call": "canceled", 
+    "id": {
+            "sport": "Soccer", 
+            "event_group_name": "EPL", 
+            "away": "Manchester City", 
+            "start_time": "2019-03-16T12:30:00Z", 
+            "home": "Manchester United"
+        }, 
+    "arguments": {}, 
+    "unique_string": "2019-03-16t123000z__soccer__epl__manchester-united__manchester-city__canceled", 
+    "provider_info": {
+            "source": "direct string input", 
+            "pushed": "2019-02-19T08:41:04.15Z", 
+            "name": "scorespro", 
+            "bitArray": "00000000100", 
+            "source_file": "20190219-084104_646b665f-4f9f-487d-a1dc-3dab113aca5b.xml", 
+            "match_id": "1559986"
+        }, 
+    "timestamp": "2019-02-19T08:41:04Z"
+}

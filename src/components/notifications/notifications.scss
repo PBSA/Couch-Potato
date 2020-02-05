@@ -1,0 +1,89 @@
+notifications {
+    // hide scroll bar
+    .scroll-content {
+        overflow-y: auto !important;
+     }
+   
+    ::-webkit-scrollbar-track{
+    background-color: rgb(66, 39, 39)!important;
+    }
+
+    ::-webkit-scrollbar{
+        background-color: rgb(66, 39, 39)!important;
+    }
+
+    ::-webkit-scrollbar-thumb{
+    border-radius: 10px!important;
+    background-color: rgb(66, 39, 39)!important;
+    }  
+
+
+    .toolbar-background{
+        background-color: color($colors,light-blue) !important;
+    }
+
+    .toolbar-title{
+        color: color($colors,light);
+        padding-top: 0px;
+        text-align: center; 
+        font-size: 13pt;
+        text-decoration: underline;
+    }
+
+    .content{
+        background-color: color($colors,light-blue);
+        height: 655px;
+        border-radius: 0px 10px 20px 0px;
+    }
+
+    .note{
+        font-size: 9pt;
+        margin: 3px 0px 3px 3px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: color($colors,dark);
+        height: 80px;
+    }
+
+    .note-high{
+        background-color: color($colors,light-red);
+        color: color($colors,light);
+    }
+
+    .note-medium{
+        background-color: color($colors,light-orange);
+        color: color($colors,dark);
+    }
+
+    .note-low{
+        background-color: color($colors,light-green);
+        color: color($colors,dark);
+    }
+
+    .icon{
+        height: 5px;
+        width: 5px;
+        padding-right: 2px;
+    }
+
+    .row{
+        padding: 4px 0px 0px 4px;
+    }
+
+    .time-row{
+        font-style: bold;
+        font-size: 9pt;
+        text-align: right;
+        margin-right: 3px;
+    }
+
+    .detail-row{
+        font-size: 8pt;
+
+    }
+
+    .message-row{
+        font-size: 9pt;
+        font-style: bold;
+    }
+}

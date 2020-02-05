@@ -1,0 +1,21 @@
+{
+    "unique_string": "2019-12-15t203000z__basketball__nba-regular-season__new-orleans-pelicans__orlando-magic__create__20192020", 
+    "timestamp": "2019-12-09T19:46:59Z", 
+    "arguments": {
+    "season": "2019/2020"}, 
+    "call": "create", 
+    "id": {
+        "home": "New Orleans Pelicans", 
+        "sport": "Basketball", 
+        "event_group_name": "NBA-REGULAR SEASON", 
+        "away": "Orlando Magic", 
+        "start_time": "2019-12-15T20:30:00Z"
+        }, 
+    "provider_info": {
+        "name": "scorespro", 
+        "match_id": "5230442", 
+        "source": "direct string input", 
+        "source_file": "20191209-194652_b7dc4ef0-52ab-4316-a016-33eb1620be61.xml", 
+        "pushed": "2019-12-09T19:46:51.875Z"
+        }
+    }

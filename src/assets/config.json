@@ -1,0 +1,5 @@
+{
+    "name": "carrot",
+    "api_url": "https://localhost/",
+    "notifications": 3000
+}

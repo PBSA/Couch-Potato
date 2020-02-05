@@ -1,0 +1,49 @@
+sports {
+    .tab{
+        height:45px; 
+        width: 200px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        border-style: solid; 
+        cursor: pointer;
+        font-size: 13pt;
+    }
+
+    .tab-selected{
+        background-color:color($colors,blue-grey);
+        border-width: 0px; 
+        color: color($colors,light);
+        font-weight: bold;
+    }
+
+    .tab-unselected{
+        background-color: color($colors,light-blue-grey);
+        border-width: 0px 1px 1px 0px;
+        border-color: black;
+        color: color($colors,light-grey);
+    }
+
+    .tab-unselected:hover {
+        background-color:color($colors,medium-blue);
+        color:color($colors,light);
+    }
+
+    .tab-text{
+        font-size: 12pt;
+        text-align: center; 
+        vertical-align: super;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .label-md{
+        margin:0;
+        margin-top: -30px;
+    }
+    
+    .icon{
+        width: 24px ;
+        height: 22px;
+        margin: 10px 6px 6px 6px;
+    }
+}

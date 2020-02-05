@@ -1,0 +1,227 @@
+selector {
+
+    ion-select {
+        max-width: 60%;
+    }
+
+    ion-img img {
+        margin-top: 1px;
+    }
+ 
+    .content{
+        background-color: color($colors,light);
+    }
+
+    .footer{
+        background-color: color($colors,light-blue);
+    }
+
+    .closeicon{
+        margin-top: 5px; 
+        margin-left: 5px;
+        font-size: 28pt;
+        color: color($colors,light);
+        cursor: pointer;
+    }
+
+    .game-row{
+        height: 28px !important;
+    }
+
+    .game-col{
+        padding-top: 20px; 
+        text-align: center; 
+        max-width: 10%;
+    }
+
+    .team-input{
+        color:blue; 
+        font-size: 10pt; 
+        width: 350px; 
+        margin-top: 3px;
+    }
+
+    .team-item{
+        border-radius: 10px;
+        background-color: color($colors,blue-white);
+        color:black; 
+        font-size: 10pt;
+        height: 20px;
+    }
+
+    .close{
+        text-align: right;
+        width: 100px;
+        color: color($colors,light);
+        border-radius: 10px;
+        font-size: 12pt;
+    }
+
+    .add{
+        width: 100px;
+        color: color($colors,light);
+        border-radius: 10px;
+        height: 35px;
+        font-size: 12pt;
+     }
+
+    .icon{
+        width: 42px;
+        height: 50px;
+        padding: 0px 0px 5px 0px;
+    }
+
+    .title-text{
+        font-size: 16pt;
+        color: color($colors,light);
+        padding-top: 15px;
+    }
+
+    .title-date{
+        font-size: 14pt;
+        color: color($colors,light);
+        padding-top: 15px;
+        text-align: center;
+    }
+
+    .toolbar-background{
+        background-color: color($colors,light-blue);
+    }
+
+    .toolbar-title{
+        background-color: color($colors,light-blue);
+        color: color($colors,charcoal);
+        padding-top: 0px;
+        height: 60px;
+    }
+
+    .column-headers{
+        height: 35px; 
+        background-color:color($colors,medium-blue);
+        color: white;
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 5px;
+    }
+
+    .cancel-icon{
+        padding-top: 10px;
+        color: color($colors,danger);
+        cursor: pointer;
+        width: 10px;
+    }
+
+    .no-cancel-icon{
+        padding-top: 10px;
+        margin-left: 10px;
+        color: transparent;
+        cursor: default;
+    }
+
+    .close-icon{
+        color: whitesmoke;
+        font-size: 32pt;
+        cursor: pointer;
+        padding-bottom: 10px;
+    }
+
+    .actions{
+        padding-top: 10px;
+        width:40px; 
+        font-size: 10pt;
+        cursor: pointer;
+        color: color($colors,medium-blue);
+    }
+
+    .actions:hover{
+        color: color($colors,dark-blue);
+        font-weight: bold ;    
+    }
+
+    // status label style
+    .status{
+        background-color: color($colors,medium-grey);
+        color: color($colors,light);
+        height: 30px;
+        max-width: 100px;
+        margin-top: 10px;
+        padding: 5px 0px 0px 0px;
+        font-size: 10pt;
+        text-align: center;
+        border-style: solid;
+        border-width: 1px;
+        border-color: color($colors,dark);
+    }
+
+    // flow button styles
+    .start{
+        background-color: color($colors,light-blue);
+        color: color($colors,light);
+        width: 80px;
+        height: 30px;
+        margin-top: 10px;
+        font-size: 9pt;
+        border-radius: 5px;
+    }
+
+    .finish{
+        background-color: color($colors,medium-blue);
+        color: color($colors,light);
+        width: 80px;
+        height: 30px;
+        margin-top: 10px;
+        font-size: 9pt;
+        border-radius: 5px;
+    }
+
+    .cancel{
+        background-color: transparent;
+        width: 0px;
+        height: 0px;
+        cursor: default;
+    }
+
+    .completed{
+        background-color: transparent;
+        width: 0px;
+        height: 0px;
+        cursor: default;
+    }
+
+    .scoreEnabled{
+        background-color: color($colors,blue-white);
+        border-style: solid;
+        border-width: 1px;
+        border-color: color($colors,dark);
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 30px;
+        font-size: 12pt;
+    }
+
+    .scoreDisabled{
+        background-color: color($colors,dark-white);
+        border-style: solid;
+        border-width: 1px;
+        border-color: color($colors,dark);
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 30px;
+        font-size: 12pt;
+    }
+
+    .text-input-md{
+        padding: 0;
+        margin: 5px 5px 0px 5px;
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+    
+}

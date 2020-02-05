@@ -1,0 +1,22 @@
+INSERT INTO `teams` ( `name`, `icon`, `league` ) 
+        VALUES 
+                ("Inter Milan", "milan.png", 4),
+                ("Juventus", "juventus.png", 4),
+                ("Lazio", "lazio.png", 4),
+                ("Roma", "roma.png", 4),
+                ("Cagliri", "cagliri.png", 4),
+                ("Atalanta", "atalanta.png", 4),
+                ("Parma", "parma.png", 4),
+                ("Napoli", "napoli.png", 4),
+                ("Torino", "torino.png", 4),
+                ("Milan", "milan.png", 4),
+                ("Bologna", "bologna.png", 4),
+                ("Verona", "verona.png", 4),
+                ("Fiorentina", "fiorentina.png", 4),
+                ("Sassuolo", "sassuolo.png", 4),
+                ("Lecce", "lecce.png", 4),
+                ("Sampdoria", "sampdoria.png", 4),
+                ("Udinese", "udinese.png", 4),
+                ("Brescia", "brescia.png", 4),
+                ("Genoa", "genoa.png", 4),
+                ("SPAL", "spal.png", 4)

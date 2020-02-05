@@ -1,3 +1,69 @@
 page-home {
+    .logo {
+        margin-top: 3px;
+     }
+    
+     .toolbar-title-md{
+         //font-size: 30px;
+         //font-weight: bold;
+         background-color: transparent;
+     }
 
+    .replay{
+         width: 80%;
+         color: color($colors,light);
+         border-radius: 10px;
+         height: 40px;
+         font-size: 12pt;
+         margin-top: 25px;
+      }
+   
+     .small-icon{
+        color: #FFBC1D;
+     }
+    
+     .thin-row{
+         font-size: 11pt;
+     }
+
+     .logout{
+      font-size: 11pt;
+      cursor:pointer;
+     }
+    
+     .thick-row{
+        height: 30px;
+        font-size: 20pt;
+    }
+    
+     .maintitle{
+         height: "200px" ;
+         padding-top: 5px;
+     }
+    
+     .sport-background{
+        background-color: color($colors,dark-blue);
+     }
+
+     .league-background{
+        background-color:color($colors,blue-grey);
+        padding-top: 40px;
+        border-radius: 0px 0px 0px 15px;
+
+     }
+
+     .teams-background{
+        background-color:color($colors,blue-grey);
+        padding-top: 40px; 
+        padding-right: 50px;
+        border-radius: 0;
+        //height:100%;
+     }
+
+     .notifications-background{
+      border-radius: 0px 10px 10px 0px;
+      //height: 400px;
+      //width: 70%;
+   }
+     
 }

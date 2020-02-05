@@ -1,0 +1,72 @@
+
+<!--Month-->
+<div class="page">
+    <div class="month">
+      <ion-grid no-padding>
+          <ion-row>
+              <ion-col no-padding col-4 style="text-align: right">
+                  <ion-icon name='arrow-back' class="arrow" (click) = changeMonth(-1)></ion-icon>
+              </ion-col>
+              <ion-col no-padding col-4 >
+                  {{selectedMonth}}  {{selectedYear}}
+              </ion-col>
+              <ion-col no-padding col-4 style="text-align: left">
+                  <ion-icon name='arrow-forward' class="arrow" (click) =changeMonth(1)></ion-icon>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+    </div>
+
+    <!--Day Names-->
+    <div>
+      <ion-grid no-padding>
+        <ion-row>
+          <div *ngFor="let day of days" class="day-col"> 
+            <ion-col no-padding >
+                <ion-item no-lines class="day-name">
+                      {{day}}        
+                </ion-item>
+              </ion-col>
+          </div> 
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!--Day Cells-->
+    <div >
+        <ion-grid no-padding>
+            <div *ngFor="let row of getRows() let x = index">
+                <ion-row>
+                    <div *ngFor="let day of days let y = index" [class]="getDay(x,y) > 0 ? 'day-cell' : 'no-cell'" >
+                       <!--Don't show cell if no date-->
+                       <div *ngIf = "getDay(x,y) > 0"   (click)="openSelector(x,y)">
+                      
+                            <ion-col no-padding>
+                                <ion-row >
+                                    <ion-col col-6 no-padding >
+                                      <ion-item no-lines [class] = "isToday(x,y) ? 'cell-today' : 'cell-normal'"  >
+                                            {{dayCounter}}
+                                      </ion-item>
+                                    </ion-col>
+                                    <ion-col col-6></ion-col>
+                              </ion-row>
+                              <div *ngIf = "tempvalue[dayCounter] > 0"  >
+                                    <ion-row style="height: 40px;">
+                                    <!--Only show if has data and month/year is correct-->
+                                        <ion-col style="margin-top: -10px" col-6>
+                                              <img width="34" height="35" [src]= "getIcon()" >
+                                        </ion-col>
+                                        <ion-col col-6>
+                                            <ion-badge style="text-align: right"color="danger">{{tempvalue[dayCounter]}}</ion-badge>
+                                        </ion-col>
+                                  </ion-row>
+                                </div>
+                            </ion-col>
+            
+                        </div>
+                    </div>
+                  </ion-row>
+              </div>
+        </ion-grid>
+    </div>
+</div>

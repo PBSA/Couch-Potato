@@ -1,0 +1,31 @@
+<ion-content padding class="background-gradient">
+    <body padding>
+      <div style="text-align: center; padding-top: 100px;">
+          <span class = "title-white large-title-white">{{ title1 }}</span>
+          <span class = "title-orange large-title-orange">{{ title2 }}</span>
+      </div>
+      
+      <div  style="text-align:center; align-content: center; margin-top: 20px">
+      <img width="20%" alt="Couch Potato Logo" src= "/assets/imgs/couch-potato-main.png">
+      </div>
+      
+      <div style="text-align: center; padding-bottom: 50px; width:100%">
+        
+        <h2>
+            <div style="padding-top: 40px;">
+                <input [(ngModel)] = "user.username" maxlength="24" placeholder="User name" class="input" >
+            </div>
+            <div style="padding-top: 10px;">
+                  <input [(ngModel)] = "user.password" (keyup.enter)="onClickLogin()" type="Password" maxlength="40" placeholder="Password" class="input">
+            </div>
+           <br>
+            <button (click)='onClickLogin()' ion-button>Login</button>
+        </h2>
+        <div >
+          <span class="register-user" (click) = 'registerUser()'>Create Account</span>
+          <span class="pipe">|</span>
+          <span class="forgot-password">Forgot Password?</span>
+        </div>
+      </div>
+      </body>
+  </ion-content>

@@ -1,0 +1,21 @@
+{
+    "call": "canceled", 
+    "id": {
+            "sport": "Soccer", 
+            "event_group_name": "EPL", 
+            "away": "Cardiff", 
+            "start_time": "2019-03-16T15:00:00Z", 
+            "home": "Brighton"
+            }, 
+    "arguments": {}, 
+    "unique_string": "2019-03-16t150000z__soccer__epl__brighton__cardiff__canceled", 
+    "provider_info": {
+            "source": "direct string input", 
+            "pushed": "2019-02-19T08:40:38.533Z", 
+            "name": "scorespro",
+            "bitArray": "00000000100", 
+            "source_file": "20190219-084038_eea958e6-98d0-43b2-8024-ce5af73fe7da.xml", 
+            "match_id": "1559981"
+            }, 
+    "timestamp": "2019-02-19T08:40:38Z"
+}

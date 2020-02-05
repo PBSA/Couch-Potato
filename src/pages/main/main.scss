@@ -1,0 +1,74 @@
+page-main {
+    .button-round-md, .button-md{
+        //background-color:orange;
+        width: 10%;
+        border-radius: 10px;
+    }
+
+    .background-gradient{
+            //background: #3866b9;
+            background: radial-gradient(color($colors,light-blue),color($colors,dark-blue));
+    }
+
+    .title{
+        font-size: 64px;
+        font-weight: bold; 
+        font-family: 'Roboto', Arial, sans-serif
+    }
+
+    .forgot-password{
+        font-size: 12pt;
+        color: color($colors,light);
+        cursor:pointer;
+    }
+
+    .forgot-password:hover{
+        color: color($colors, bright-orange);
+    }
+
+    .register-user{
+        font-size: 12pt;
+        color: color($colors,light);
+        cursor:pointer;
+    }
+
+    .register-user:hover{
+        color: color($colors, bright-orange);
+    }
+
+    .pipe{
+        font-size: 13pt;
+        color: color($colors,light);
+        font-weight: bold;
+    }
+
+    .input{
+        width: 15%;
+        border-radius: 10px;
+        height: 40px;
+        font-size: 12pt;
+        background-color: color($colors,light);
+        color: black;
+        padding-left:10px;
+    }
+   
+    .large-title-white,
+    .large-title-orange {
+        display: inline-block;
+        font-size: 72px;
+        letter-spacing: -1px;
+        margin-top: 4px;
+        vertical-align: top;
+    }
+
+    .title-white{
+        color: white;  
+        //font-weight: 300;
+    }
+    
+    .title-orange{
+       color: #FFBC1D;
+       font-weight: 900;
+    }
+    
+}

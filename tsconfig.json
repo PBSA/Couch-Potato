@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    //"resolveJsonModule": true, 
+    //"esModuleInterop": true ,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "emitDecoratorMetadata": true,
@@ -12,6 +14,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es5"
+   
   },
   "include": [
     "src/**/*.ts"

@@ -1,0 +1,43 @@
+
+<ion-header >    
+    <ion-toolbar no-padding>
+        <ion-title > 
+            Notifications
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="content">
+ <div style= "margin: 5px;">
+    <div *ngFor="let note of notifications" >
+      <div [class]="note.class">
+          <ion-grid no-padding>
+            <ion-row class="row time-row">
+                <ion-col col-1>
+                    <img [src]= "note.icon">
+                </ion-col>
+                <ion-col col-11>
+                    {{note.starttime}}
+                </ion-col>
+            </ion-row>
+              <ion-row class="row detail-row">
+                  <ion-col>
+                      {{note.sportname}} ( {{note.leaguename}} )
+                  </ion-col>
+              </ion-row>
+              <ion-row class="row detail-row">
+                  <ion-col>
+                      {{note.hometeam}} v {{note.awayteam}}
+                  </ion-col>
+              </ion-row>
+              <ion-row class="row message-row">
+                  <ion-col>
+                      {{note.message}}
+                  </ion-col>
+                  
+              </ion-row>
+          </ion-grid>
+      </div>
+
+    </div>
+ </div>
+</ion-content>

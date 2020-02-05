@@ -1,0 +1,91 @@
+register {
+    .background-gradient{
+        //background: #3866b9;
+        background: radial-gradient(color($colors,medium-blue),color($colors,dark-blue));
+    }
+
+    .button-round-md, .button-md{
+        width: 30%;
+        border-radius: 10px;
+        font-size: 14pt;
+    }
+
+    .icon{
+        color: white;
+        font-size: 26pt;
+        padding: 10px 10px 0px 0px;
+        cursor: pointer;
+    }
+
+    .title{
+        color: color($colors,light);
+        text-align: center;
+        font-size: 26pt;
+        padding: 20px;
+      
+    }
+
+    .proxy-caption{
+        color: color($colors,light-orange);
+        font-size: 18pt;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    .proxy-name{
+        color: color($colors,light-orange);
+        font-size: 18pt;
+        text-align: left;
+    }
+
+    .input{
+        color: color($colors,dark);
+        text-align: left;
+        padding-left: 10px;
+        font-size: 13pt;
+        height:40px;
+        width: 50%;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 10px;
+        border-color: color($colors,light);
+        background-color:color($colors,light);
+    }
+
+    .small-text{
+        color: white;
+        text-align: left;
+        font-size: 10pt;
+    }
+
+    .star{
+        color: color($colors,danger);
+        padding-left: 10px;
+        font-size: 18pt;
+    }
+
+    // hide scroll bar
+    .scroll-content {
+        overflow-y: auto !important;
+     }
+   
+    ::-webkit-scrollbar-track{
+    background-color:transparent !important;
+    }
+
+    ::-webkit-scrollbar{
+        background-color: transparent !important;
+    }
+
+    ::-webkit-scrollbar-thumb{
+    border-radius: 10px!important;
+    background-color: transparent !important;
+    }  
+
+    // placeholder colour
+    ::placeholder { 
+        color: color($colors,dark-white);
+        opacity: 1; 
+      }
+      
+}

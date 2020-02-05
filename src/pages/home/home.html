@@ -1,14 +1,68 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<div>Hello</div>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+<ion-header style="width: 100%">      
+    <ion-title text-left class="maintitle">
+        <ion-grid style="padding: 0px 0px 0px 30px">
+            <ion-row no-padding>
+                <ion-col col-4>
+                      <img width="120" height="80" alt="Couch Potato" src= "/assets/imgs/couch-potato.png" class="logo">
+                      <span class ="small-title-white title-white">Couch</span><span class ="small-title-orange title-orange">Potato</span>
+                </ion-col>
+                <ion-col col-4 text-center>
+                      <ion-icon style="font-size:30pt" name="clock"></ion-icon> 
+                      <div style="font-size: 12pt">Local Time <span style="color:orange">{{localtime | date:'HH:mm:ss'}}</span></div>
+                </ion-col>
+                <ion-col col-2 style="text-align: right">
+                        <button icon-end ion-button class="replay" (click)="openReplay()">
+                            Replay
+                            <ion-icon  name="redo"></ion-icon>
+                        </button>
+                    </ion-col>
+                <ion-col col-2 text-right>
+                    <ion-row class="thin-row">
+                          <ion-col class = "small-icon">
+                              <ion-icon item-start name="person"> </ion-icon> &nbsp;{{user.username}}
+                          </ion-col>  
+                    </ion-row>
+                    <ion-row class="logout" (click)='logOut()'text-right>
+                          <ion-col no-padding >
+                                Log Out
+                          </ion-col>
+                      </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-title>
+  </ion-header>
+
+    <ion-content class="sport-background">
+        <ion-grid style="padding-left: 50px">
+            <ion-row>
+            <ion-col col-12 no-padding>
+                    <sports ></sports>
+            </ion-col>
+            </ion-row>
+            <ion-row >
+            <ion-col col-2 no-padding>
+                <div class="league-background">
+                    <leagues></leagues>
+                </div>
+            </ion-col>
+            <ion-col col-8 no-padding>
+                <div class="teams-background">
+                    <calendar></calendar>
+                </div>
+            </ion-col>
+            <ion-col col-2 no-padding>
+                    <div class="notifications-background">
+                        <notifications></notifications>
+                    </div>
+                </ion-col>
+            </ion-row>    
+        </ion-grid>
+
+    </ion-content>
+
+  
+        
+             
