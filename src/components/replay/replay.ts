@@ -68,7 +68,7 @@ export class ReplayComponent {
       // create one replay for each sport - ** this stops possible race conditions **.
         this._data.runReplay(sport.name,leagueString,this.startDate, this.endDate).subscribe(data=>{
             retval=data;
-            console.log(data);
+            //console.log(data);
         })
       }
     }
