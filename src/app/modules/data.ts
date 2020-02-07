@@ -125,8 +125,8 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
-    getGamesDataByMonth(month: string, year: string, league: string){
-      return this.http.get(this.url + "get_games_by_date.php", {params:{month: month, year: year, league: league}})
+    getGamesDataByMonth(league: string, start: string, end: string){
+      return this.http.get(this.url + "get_games_by_date.php", {params:{league: league, start: start, end: end}})
       .map( data =>  this.result = data);
     }
 
@@ -140,7 +140,7 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
-    getEventsByLeagueAndDate(league: string, start: string, end: string){
+    getGamesByLeagueAndDate(league: string, start: string, end: string){
       return this.http.get(this.url + "get_games_by_league_and_date.php", {params:{league: league, start: start, end: end}})
       .map( data =>  this.result = data);
     }

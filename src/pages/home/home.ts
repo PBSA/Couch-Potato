@@ -23,8 +23,6 @@ export class HomePage {
       setInterval(() => {
         this.localtime = Date.now().toString();
       });
-
-      console.log(this.config);
   }
 
   openReplay(){

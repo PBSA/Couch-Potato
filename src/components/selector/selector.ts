@@ -79,7 +79,7 @@ export class SelectorComponent {
 
   getEvents(){
     // need to adjust time/date by timezone offset.
-    this._data.getEventsByLeagueAndDate(this.activeLeague.name, this.timeRange.start, this.timeRange.end).subscribe(events =>{
+    this._data.getGamesByLeagueAndDate(this.activeLeague.name, this.timeRange.start, this.timeRange.end).subscribe(events =>{
         this.events = events; 
     });
   }
@@ -114,9 +114,6 @@ export class SelectorComponent {
       // remove seconds
       this.starttime = this.starttime.substring(0,5);
       putData.start_time = new Date(this.date + " " + this.starttime).toISOString();
-      // use local date/time for GUI
-      //putData.local_start_time = this.starttime;
-      //putData.local_start_date = this.date;
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error
@@ -209,7 +206,8 @@ export class SelectorComponent {
       var retval: any;
       this.putData.call = 'in_progress';
       this.getMandatoryData(game);
-      this.putData.whistle_start_time = new Date().toISOString();   
+      this.putData.whistle_start_time = new Date().toISOString();  
+      //console.log(this.putData) ;
       this._data.startGame(this.putData).subscribe(data=>{
         retval = data;
         if(retval.status != "200"){ // error
@@ -287,7 +285,8 @@ export class SelectorComponent {
     this.putData.league = game.league;
     this.putData.home = game.hometeam.trim();
     this.putData.away = game.awayteam.trim();
-    this.putData.start_time = new Date(this.date + ' ' + game.starttime).toISOString();
+    this.putData.start_time = this.convertDateTime(new Date(this.date + ' ' + game.starttime)) + ":00.000Z";
+    this.putData.start_time = this.putData.start_time.replace(/ /g, "T");
     this.putData.match_id = game.gameid;
   }
 

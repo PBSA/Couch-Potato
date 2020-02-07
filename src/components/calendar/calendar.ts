@@ -37,7 +37,10 @@ export class CalendarComponent {
   private firstDayNumber: number;
   private allGames: any ;
   private tempvalue = new Array();
+  private timeRange: any = {};
   private userid: any;
+  private zoneOffset: number;
+  private dayCount: number;
 
   constructor(private events: Events, private modalCtrl: ModalController,
     private _data: DataComponent) {
@@ -54,7 +57,23 @@ export class CalendarComponent {
       var firstDayString = this.selectedYear.toString() + "-" + firstMonth + "-01";
       this.firstDay = new Date (firstDayString);
       this.firstDayNumber = this.firstDay.getDay();
-     
+
+      // adjust for leap year
+      this.isLeapYear();
+      
+     // get data range adjusting for local time
+     this.zoneOffset = new Date().getTimezoneOffset();
+
+     // add/subtract offset
+     var timeStart = new Date(Number(this.calendarDate.getFullYear()), Number(this.calendarDate.getMonth()), 1, 0, 0, 1);
+     timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
+     this.timeRange.start = this.convertDateTime(timeStart);
+     var timeEnd = timeStart;
+
+     // end time varies according to number of days in month
+     timeEnd.setMinutes(timeEnd.getMinutes() + (this.dayCount * 24 * 60));
+     this.timeRange.end = this.convertDateTime(timeEnd);
+
       // get the user
       events.subscribe('user', (user: any) => {
         this.userid = user;
@@ -78,29 +97,35 @@ export class CalendarComponent {
       });
   }
 
+  convertDateTime(dateTime: Date): string{
+
+    var day = dateTime.getDate().toString();
+    var month = (dateTime.getMonth()+1).toString();
+    var hour  = dateTime.getHours().toString();
+    var minute = dateTime.getMinutes().toString();
+     if(day.length == 1){day = "0" + day}
+     if(month.length == 1){month = "0" + month}
+     if(hour.length == 1){hour = "0" + hour}
+     if(minute.length == 1){minute = "0" + minute}
+    return dateTime.getFullYear() + "-" + month + "-" + day + " " + hour + ":" + minute;
+}
+
+
   loadGamesByDate(){
       // load games date for the current month on the calendar and the current league
-      this._data.getGamesDataByMonth((this.selectedMonthNumber + 1).toString(), 
-                                      this.selectedYear.toString(), 
-                                      this.selectedLeague.name).subscribe(games =>{
+      this._data.getGamesByLeagueAndDate(this.selectedLeague.name, this.timeRange.start, this.timeRange.end).subscribe(games =>{
       this.allGames = games;
       // count how many games per day.
       var counter:number = 1;
       var numgames: number = 0;
       var game: any
-      var daycount: number;
 
-      // adjust for leap year
-      daycount = this.months[this.selectedMonthNumber].days +1;
-      if((this.selectedMonthNumber == 1) && (this.selectedYear % 4 == 0)) // Leap year
-      { daycount++}
-      
-
-      for(counter=0; counter <= daycount; counter++){ 
+      for(counter=0; counter <= this.dayCount; counter++){ 
           for(game of this.allGames){
-                var day: string = (game.date).toString();
-                var newday =  Number(day.substr(8,2));
-                if(counter == newday && game.league == this.selectedLeague.name){
+              // need to adjust game dates from UTC back to local time
+                var day: number = this.getLocalDay((game));
+                //var newday =  Number(day.substr(8,2));
+                if(counter == day && game.league == this.selectedLeague.name){
                     numgames ++;
                 }
           }
@@ -109,6 +134,16 @@ export class CalendarComponent {
           numgames=0;
       }
     });
+  }
+
+  getLocalDay(game: any){
+    var day: string;
+    var localDate = new Date(game.date + " " + game.starttime);
+    localDate.setMinutes(localDate.getMinutes() - this.zoneOffset);
+    day = localDate.getDate().toString();
+   
+    if(day.length == 1){day = "0" + day}
+    return Number(day);
   }
 
   openSelector(x: number, y: number){
@@ -132,7 +167,7 @@ export class CalendarComponent {
                   'date': thisDay,
                   'formattedDate': formattedDate,
                   'sport': this.selectedSport,
-                  'userid': this.userid         
+                  'userid': this.userid        
                 };
       let selectormodal = await this.modalCtrl.create(SelectorComponent, data, 
           {cssClass: "selector-modal"});
@@ -161,9 +196,27 @@ export class CalendarComponent {
       var firstDayString = this.selectedYear + "-" + newMonth + "-01";
       this.firstDay = new Date (firstDayString);
       this.firstDayNumber = this.firstDay.getDay();
+
+      // set new date range
+     var timeStart = new Date(Number(this.selectedYear), Number(this.selectedMonthNumber), 1, 0, 0, 1);
+     timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
+     this.timeRange.start = this.convertDateTime(timeStart);
+     var timeEnd = timeStart;
+
+     // adjust for leap year
+     this.isLeapYear();
+     
+     // end time varies according to number of days in month
+     timeEnd.setMinutes(timeEnd.getMinutes() + (this.dayCount * 24 * 60));
+     this.timeRange.end = this.convertDateTime(timeEnd);
    
       // reload data
       this.loadGamesByDate();
+  }
+
+  isLeapYear(){
+    this.dayCount = this.months[this.selectedMonthNumber].days +1;
+      if((this.selectedMonthNumber == 1) && (this.selectedYear % 4 == 0)) { this.dayCount++} //leap year
   }
 
   getRows(){
