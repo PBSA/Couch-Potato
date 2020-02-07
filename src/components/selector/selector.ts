@@ -18,13 +18,15 @@ export class SelectorComponent {
   private formattedDate: string;
   private hometeam: string = "";
   private awayteam: string = "";
-  private starttime: string = "";
+  private starttime: string = new Date().toTimeString().substr(0,5);
   private teams: any = new Array();
   private putData: any = {};
   private putGame: any = {};
   private putEvent: any = {};
+  private timeRange: any = {};
   private lastGameId: any;
   private sport: string;
+  private zoneOffset: number;
 
   constructor(navParams: NavParams, 
               public navCtrl: NavController, private viewCtrl: ViewController, private user:UserComponent,
@@ -35,12 +37,34 @@ export class SelectorComponent {
       this.date = navParams.get('date');
       this.formattedDate = navParams.get('formattedDate');
       this.sport = navParams.get('sport');
-      // default starttime to now in local time
-      this.starttime = new Date().toTimeString().substring(0,8);
+      // get timezone offset in minutes
+      this.zoneOffset = new Date().getTimezoneOffset();
+      // add/subtract offset
+      var timeStart = new Date(Number(this.date.substr(0,4)), Number(this.date.substr(5,2))-1, Number(this.date.substr(8,2)), 0, 0, 1)
+      timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
+      this.timeRange.start = this.convertDateTime(timeStart);
+      var timeEnd = timeStart;
+      timeEnd.setMinutes(timeEnd.getMinutes() + (24*60));
+      this.timeRange.end = this.convertDateTime(timeEnd);
       // get team data.
       this.getTeams();
       // get event data
       this.getEvents();
+
+  }
+
+  convertDateTime(dateTime: Date): string{
+
+      var day = dateTime.getDate().toString();
+      var month = (dateTime.getMonth()+1).toString();
+      var hour  = dateTime.getHours().toString();
+      var minute = dateTime.getMinutes().toString();
+       if(day.length == 1){day = "0" + day}
+       if(month.length == 1){month = "0" + month}
+       if(hour.length == 1){hour = "0" + hour}
+       if(minute.length == 1){minute = "0" + minute}
+
+      return dateTime.getFullYear() + "-" + month + "-" + day + " " + hour + ":" + minute;
   }
 
   getTeams(){
@@ -54,9 +78,22 @@ export class SelectorComponent {
   }
 
   getEvents(){
-    this._data.getEventsByLeagueAndDate(this.activeLeague.name, this.date).subscribe(events =>{
+    // need to adjust time/date by timezone offset.
+    this._data.getEventsByLeagueAndDate(this.activeLeague.name, this.timeRange.start, this.timeRange.end).subscribe(events =>{
         this.events = events; 
     });
+  }
+
+  getLocalStartTime(event){
+    var hour: string;
+    var minute: string;
+    var localDate = new Date(event.date + " " + event.starttime);
+    localDate.setMinutes(localDate.getMinutes() - this.zoneOffset);
+    hour = localDate.getHours().toString();
+    minute = localDate.getMinutes().toString();
+    if(hour.length == 1){hour = "0" + hour}
+    if(minute.length == 1){minute = "0" + minute}
+    return hour + ":" + minute;
   }
   
   addGame(){
@@ -78,8 +115,8 @@ export class SelectorComponent {
       this.starttime = this.starttime.substring(0,5);
       putData.start_time = new Date(this.date + " " + this.starttime).toISOString();
       // use local date/time for GUI
-      putData.local_start_time = this.starttime;
-      putData.local_start_date = this.date;
+      //putData.local_start_time = this.starttime;
+      //putData.local_start_date = this.date;
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error
@@ -172,9 +209,18 @@ export class SelectorComponent {
       var retval: any;
       this.putData.call = 'in_progress';
       this.getMandatoryData(game);
-      this.putData.whistle_start = new Date().toISOString();   
+      this.putData.whistle_start_time = new Date().toISOString();   
       this._data.startGame(this.putData).subscribe(data=>{
         retval = data;
+        if(retval.status != "200"){ // error
+          if(retval.subcode = "460"){
+            // not normalized data.
+            this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
+          }
+          else{
+            this._alert.showError("Error " + retval.status, "[" + retval.subcode + "]: "+ retval.title);
+          }
+        }
       });
   }
 
@@ -187,7 +233,7 @@ export class SelectorComponent {
       this._data.addScore(this.putData).subscribe(data=>{});  
       // finish game since I don't think the result can be changed anyway!!
       this.putData.call= 'finish';
-      this.putData.whistle_end = new Date().toISOString();   
+      this.putData.whistle_end_time = new Date().toISOString();   
       this._data.finishGame(this.putData).subscribe(data=>{});
   }
 

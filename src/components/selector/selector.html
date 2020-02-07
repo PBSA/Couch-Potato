@@ -56,7 +56,7 @@
             <ion-grid>
                 <ion-row class="game-row">
                     <ion-col class="game-col">
-                        {{event.starttime}}
+                        {{getLocalStartTime(event)}}
                     </ion-col>
                     <ion-col style="padding-top: 15px; max-width: 40%">
                         <ion-img start style="background-color: transparent" [src] ="getTeamIcon(event.hometeam)"></ion-img>

@@ -14,8 +14,7 @@ export class DataComponent{
     private url: string;
     private configFile: any;
 
-    constructor(private http: HttpClient, private _alert: AlertComponent, private config: Config) {
-        
+    constructor(private http: HttpClient, private _alert: AlertComponent, private config: Config) {   
         // load config data
             this.getConfig().subscribe(data => {
             this.configFile = data;
@@ -141,8 +140,8 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
-    getEventsByLeagueAndDate(league: string, date: string){
-      return this.http.get(this.url + "get_games_by_league_and_date.php", {params:{league: league, date: date}})
+    getEventsByLeagueAndDate(league: string, start: string, end: string){
+      return this.http.get(this.url + "get_games_by_league_and_date.php", {params:{league: league, start: start, end: end}})
       .map( data =>  this.result = data);
     }
 
