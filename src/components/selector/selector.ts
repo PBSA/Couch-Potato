@@ -63,7 +63,6 @@ export class SelectorComponent {
        if(month.length == 1){month = "0" + month}
        if(hour.length == 1){hour = "0" + hour}
        if(minute.length == 1){minute = "0" + minute}
-
       return dateTime.getFullYear() + "-" + month + "-" + day + " " + hour + ":" + minute;
   }
 
@@ -207,11 +206,10 @@ export class SelectorComponent {
       this.putData.call = 'in_progress';
       this.getMandatoryData(game);
       this.putData.whistle_start_time = new Date().toISOString();  
-      //console.log(this.putData) ;
       this._data.startGame(this.putData).subscribe(data=>{
         retval = data;
         if(retval.status != "200"){ // error
-          if(retval.subcode = "460"){
+          if(retval.subcode == "460"){
             // not normalized data.
             this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
           }
@@ -224,15 +222,27 @@ export class SelectorComponent {
 
   addScore(game: any){
       // add the score
+      var retval: any;
       this.putData.call = 'result';
       this.getMandatoryData(game);
       this.putData.home_score = game.homescore;
       this.putData.away_score = game.awayscore;
-      this._data.addScore(this.putData).subscribe(data=>{});  
+      this._data.addScore(this.putData).subscribe(data=>{
+      retval = data;
+        if(retval.status != "200"){ // error
+            if(retval.subcode == "460"){
+              // not normalized data.
+              this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
+            }
+            else{
+              this._alert.showError("Error " + retval.status, "[" + retval.subcode + "]: "+ retval.title);
+            }
+        }
+      });  
       // finish game since I don't think the result can be changed anyway!!
-      this.putData.call= 'finish';
-      this.putData.whistle_end_time = new Date().toISOString();   
-      this._data.finishGame(this.putData).subscribe(data=>{});
+      //this.putData.call= 'finish';
+      //this.putData.whistle_end_time = new Date().toISOString();   
+      //this._data.finishGame(this.putData).subscribe(data=>{});
   }
 
   cancelGame(game: any){
@@ -285,8 +295,10 @@ export class SelectorComponent {
     this.putData.league = game.league;
     this.putData.home = game.hometeam.trim();
     this.putData.away = game.awayteam.trim();
-    this.putData.start_time = this.convertDateTime(new Date(this.date + ' ' + game.starttime)) + ":00.000Z";
-    this.putData.start_time = this.putData.start_time.replace(/ /g, "T");
+    this.putData.start_time = game.datetime;
+    
+    this.putData.start_time = this.putData.start_time.replace(/ /g, "T") + ":00.000Z";
+    //alert (this.putData.start_time);
     this.putData.match_id = game.gameid;
   }
 
