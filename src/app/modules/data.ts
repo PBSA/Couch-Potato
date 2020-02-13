@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map'
-import { parse } from 'yaml';
+//import { parse } from 'yaml';
 import { AlertComponent } from '../../app/modules/alerts'; 
 import { Config } from '../../app/modules/user'; 
 
@@ -18,7 +18,6 @@ export class DataComponent{
         // load config data
             this.getConfig().subscribe(data => {
             this.configFile = data;
-            this.config.name = this.configFile.name;
             this.url = this.configFile.api_url;
         });
     }
@@ -45,6 +44,7 @@ export class DataComponent{
       return this.http.post(this.url + "verify_email.php", putData, {headers}).subscribe(data=>{});
     }
 
+    // incident calls
     addGame(putData: any){
       var headers = this.getJSONHeader();
       return this.http.post(this.url + "add_game.php?" , putData, {headers}).map( data =>  this.result = data);
@@ -69,6 +69,7 @@ export class DataComponent{
       var headers = this.getJSONHeader();
       return this.http.post(this.url + "cancel_game.php", putData, {headers}).map( data =>  this.result = data);
     }
+    // end of incident calls
 
     putHttpMessage(putData: any){
       var headers = this.getHttpHeader();
@@ -100,20 +101,20 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
-    getGamesData(){
+   /* getGamesData(){
       return this.http.get(this.url + "get_all_games.php")
       .map( data =>  this.result = data);
-    }
+    }*/
 
-    getLastGame(){
+  /*  getLastGame(){
       return this.http.get(this.url + "last_game.php")
       .map( data =>  this.result = data);
-    }
+    } */
 
-    getLastGameId(){
+  /*  getLastGameId(){
       return this.http.get(this.url + "last_game_id.php")
       .map( data =>  this.result = data);
-    }
+    } */
 
     getLastGameIdByDateAndLeague(date: string, league: string){
       return this.http.get(this.url + "last_game_id_by_date_and_league.php", {params:{date: date, league: league}})
@@ -125,20 +126,20 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
-    getGamesDataByMonth(league: string, start: string, end: string){
+   /* getGamesDataByMonth(league: string, start: string, end: string){
       return this.http.get(this.url + "get_games_by_date.php", {params:{league: league, start: start, end: end}})
       .map( data =>  this.result = data);
-    }
+    }*/
 
     getTeamsByLeague(league: number){
       return this.http.get(this.url + "get_teams_by_league.php", {params:{league: league.toString()}})
       .map( data =>  this.result = data);
     }
 
-    getEventsByLeague(league: string){
+  /*  getEventsByLeague(league: string){
       return this.http.get(this.url + "get_games_by_league.php", {params:{league: league}})
       .map( data =>  this.result = data);
-    }
+    } */
 
     getGamesByLeagueAndDate(league: string, start: string, end: string){
       return this.http.get(this.url + "get_games_by_league_and_date.php", {params:{league: league, start: start, end: end}})
