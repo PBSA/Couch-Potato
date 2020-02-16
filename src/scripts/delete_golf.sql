@@ -7,6 +7,6 @@ DELETE FROM `couch-potato`.`teams` WHERE `league` IN (20);
 DELETE FROM `couch-potato`.`leagues` WHERE `id` IN (20);
 
 /* Sports */
-DELETE FROM `couch-potato`.`sports` WHERE `id` = 7;
+DELETE FROM `couch-potato`.`sports` WHERE `id` = 6;
 
 

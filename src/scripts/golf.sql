@@ -1,12 +1,12 @@
 
 /* Create Golf */
 INSERT INTO `sports` ( `id`, `name`, `icon`, `duration` )         
-    VALUES (7, 'Golf','/assets/imgs/sports/golf.png',10000);
+    VALUES (6, 'Golf','/assets/imgs/sports/golf.png',10000);
 
 
 /* Create Leagues */
 INSERT INTO `leagues` ( `id`, `name`, `sport`, `icon` )         
-    VALUES (20, 'British Open',7,'/assets/imgs/leagues/open_golf.png');
+    VALUES (20, 'British Open',6,'/assets/imgs/leagues/open_golf.png');
 				
                     
 /* Create Players */

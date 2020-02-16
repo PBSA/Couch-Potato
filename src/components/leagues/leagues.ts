@@ -16,23 +16,29 @@ export class LeaguesComponent {
 
   constructor(private _data: DataComponent, private events: Events) {
    
-    // default to the first sport tab
+    // ********* default to the first sport tab
     this.loadLeagues(1);
     // default to first league tab
     this.selectedLeagueTab = 0;  
     
     // get the selected sport tab
     events.subscribe('tab', (tab: number) => {
-        this.loadLeagues(tab);
         // when sport changes default to first league
         this.selectedLeagueTab = 0;
     });
+
+    events.subscribe('sport', (sport: any) => {
+      this.loadLeagues(sport.id);
+    });
+
+
   }
 
-  loadLeagues(sport: number){
-      this._data.getLeagueDataBySport(sport).subscribe(leagues =>{
+  loadLeagues(sportid: number){
+   
+      this._data.getLeagueDataBySport(sportid).subscribe(leagues =>{
         this.activeLeagues = leagues;
-       
+        
         this.events.publish('league', this.activeLeagues[0]);
       });
   }

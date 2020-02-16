@@ -2,7 +2,7 @@
 <div >
     <ion-grid no-padding>
         <ion-row >
-            <div *ngFor="let sport of allSports let i = index" [class]="i+1==selectedTab ? 'tab tab-selected' : 'tab tab-unselected'" (click) = "sportClick(i+1)">
+            <div *ngFor="let sport of allSports let i = index" [class]="i+1==selectedTab ? 'tab tab-selected' : 'tab tab-unselected'" (click) = "sportClick(sport,i)">
               <ion-col col-4>
                   <img class="icon" [src]= "sport.icon">
               </ion-col>

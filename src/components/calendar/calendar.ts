@@ -159,6 +159,7 @@ export class CalendarComponent {
       var dayOfWeek = this.days[selectedDay+1];
       var selectedDate = dayOfWeek + " " + dayNumber + " " + this.selectedMonth + ", " + this.selectedYear;
       // open selector modal
+   
       this.presentModal(thisDay, selectedDate);
   }
 
@@ -174,6 +175,7 @@ export class CalendarComponent {
 
         selectormodal.onDidDismiss(data => {
           if(data == "add"){
+            
             this.presentModal(thisDay, formattedDate);}
           else { // refresh screen
             this.loadGamesByDate();

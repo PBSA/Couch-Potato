@@ -28,10 +28,11 @@ export class SportsComponent {
     });
   }
 
-  sportClick(tab: number){
+  sportClick(sport: any, tab: number){
     // select sport tab
     this.selectedTab = tab;
-    this.events.publish('tab', this.selectedTab)    
+    this.events.publish('tab', tab) ;   
+    this.events.publish('sport', sport) ;  
   } 
   
 }
