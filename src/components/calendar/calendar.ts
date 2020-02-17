@@ -92,8 +92,8 @@ export class CalendarComponent {
         this.selectedSport=this.allSports[0].name;
       });
 
-      events.subscribe('tab', (tab: any) => {
-        this.selectedSport=this.allSports[tab-1].name;
+      events.subscribe('tab', (sport: any) => {
+        this.selectedSport=sport.name;
       });
   }
 
@@ -159,7 +159,6 @@ export class CalendarComponent {
       var dayOfWeek = this.days[selectedDay+1];
       var selectedDate = dayOfWeek + " " + dayNumber + " " + this.selectedMonth + ", " + this.selectedYear;
       // open selector modal
-   
       this.presentModal(thisDay, selectedDate);
   }
 
@@ -175,7 +174,6 @@ export class CalendarComponent {
 
         selectormodal.onDidDismiss(data => {
           if(data == "add"){
-            
             this.presentModal(thisDay, formattedDate);}
           else { // refresh screen
             this.loadGamesByDate();

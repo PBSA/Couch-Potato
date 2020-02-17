@@ -16,7 +16,7 @@ export class SportsComponent {
   constructor(private _data: DataComponent, public events: Events) {
    
     this.loadSportsData();
-    this.events.publish('tab', this.selectedTab);
+    //this.events.publish('tab', this.selectedTab);
    
   }
 
@@ -28,11 +28,11 @@ export class SportsComponent {
     });
   }
 
-  sportClick(sport: any, tab: number){
+  sportClick(tab: number, sport: any){
     // select sport tab
     this.selectedTab = tab;
-    this.events.publish('tab', tab) ;   
-    this.events.publish('sport', sport) ;  
+    sport.tab = tab;
+    this.events.publish('tab', sport)    
   } 
   
 }

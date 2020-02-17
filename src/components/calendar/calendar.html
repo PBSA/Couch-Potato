@@ -37,9 +37,9 @@
         <ion-grid no-padding>
             <div *ngFor="let row of getRows() let x = index">
                 <ion-row>
-                    <div *ngFor="let day of days let y = index" [class]="getDay(x,y) > 0 ? 'day-cell' : 'no-cell'" >
+                    <div *ngFor="let day of days let y = index" [class]="getDay(x,y) > 0 ? 'day-cell' : 'no-cell'" (click)="openSelector(x,y)">
                        <!--Don't show cell if no date-->
-                       <div *ngIf = "getDay(x,y) > 0"   (click)="openSelector(x,y)">
+                       <div *ngIf = "getDay(x,y) > 0"   >
                       
                             <ion-col no-padding>
                                 <ion-row >

@@ -245,22 +245,23 @@ export class SelectorComponent {
               this._alert.showError("Error " + retval.status, "[" + retval.subcode + "]: "+ retval.title);
             }
         }
+            // finish game since I don't think the result can be changed anyway!!
+          this.putData.call= 'finish';
+          this.putData.whistle_end_time = new Date().toISOString();   
+          this._data.finishGame(this.putData).subscribe(data=>{
+            retval = data;
+            if(retval.status != "200"){ // error
+                if(retval.subcode == "460"){
+                  // not normalized data.
+                  this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
+                }
+                else{
+                  this._alert.showError("Error " + retval.status, "[" + retval.subcode + "]: "+ retval.title);
+                }
+            }
+          });
       });  
-      // finish game since I don't think the result can be changed anyway!!
-      this.putData.call= 'finish';
-      this.putData.whistle_end_time = new Date().toISOString();   
-      this._data.finishGame(this.putData).subscribe(data=>{
-        retval = data;
-        if(retval.status != "200"){ // error
-            if(retval.subcode == "460"){
-              // not normalized data.
-              this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
-            }
-            else{
-              this._alert.showError("Error " + retval.status, "[" + retval.subcode + "]: "+ retval.title);
-            }
-        }
-    });
+      
   }
 
   cancelGame(game: any){

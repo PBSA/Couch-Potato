@@ -14,8 +14,8 @@ export class TeamsComponent {
   constructor(events: Events) {
     
     // get the selected tab
-    events.subscribe('tab', (tab: number, sport: any) => {
-      this.selectedTab = tab;
+    events.subscribe('tab', (sport: any) => {
+      this.selectedTab = sport.tab;
       this.selectedSport = sport;
       this.selectedSportLeagues=sport.leagues[0].teams;
     });
