@@ -2,9 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map'
-//import { parse } from 'yaml';
 import { AlertComponent } from '../../app/modules/alerts'; 
-import { Config } from '../../app/modules/user'; 
 
 @Injectable()
 
@@ -14,17 +12,22 @@ export class DataComponent{
     private url: string;
     private configFile: any;
 
-    constructor(private http: HttpClient, private _alert: AlertComponent, private config: Config) {   
+    constructor(private http: HttpClient, private _alert: AlertComponent) {   
         // load config data
-            this.getConfig().subscribe(data => {
+            this.getClientConfig().subscribe(data => {
             this.configFile = data;
             this.url = this.configFile.api_url;
         });
     }
     
-    getConfig(){
+    getClientConfig(){
         return this.http.get("assets/config.json");
     }
+
+    getServerConfig(){
+      return this.http.get(this.url +  "get_config_dataproxy.php")
+      .map(data => this.result = data);
+  }
 
     getHttpHeader(): HttpHeaders{
       return new HttpHeaders({'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'});
@@ -101,21 +104,6 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
-   /* getGamesData(){
-      return this.http.get(this.url + "get_all_games.php")
-      .map( data =>  this.result = data);
-    }*/
-
-  /*  getLastGame(){
-      return this.http.get(this.url + "last_game.php")
-      .map( data =>  this.result = data);
-    } */
-
-  /*  getLastGameId(){
-      return this.http.get(this.url + "last_game_id.php")
-      .map( data =>  this.result = data);
-    } */
-
     getLastGameIdByDateAndLeague(date: string, league: string){
       return this.http.get(this.url + "last_game_id_by_date_and_league.php", {params:{date: date, league: league}})
       .map( data =>  this.result = data)
@@ -126,20 +114,10 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
-   /* getGamesDataByMonth(league: string, start: string, end: string){
-      return this.http.get(this.url + "get_games_by_date.php", {params:{league: league, start: start, end: end}})
-      .map( data =>  this.result = data);
-    }*/
-
     getTeamsByLeague(league: number){
       return this.http.get(this.url + "get_teams_by_league.php", {params:{league: league.toString()}})
       .map( data =>  this.result = data);
     }
-
-  /*  getEventsByLeague(league: string){
-      return this.http.get(this.url + "get_games_by_league.php", {params:{league: league}})
-      .map( data =>  this.result = data);
-    } */
 
     getGamesByLeagueAndDate(league: string, start: string, end: string){
       return this.http.get(this.url + "get_games_by_league_and_date.php", {params:{league: league, start: start, end: end}})

@@ -60,24 +60,13 @@ export class CalendarComponent {
 
       // adjust for leap year
       this.isLeapYear();
-      
-     // get data range adjusting for local time
-     this.zoneOffset = new Date().getTimezoneOffset();
-
-     // add/subtract offset
-     var timeStart = new Date(Number(this.calendarDate.getFullYear()), Number(this.calendarDate.getMonth()), 1, 0, 0, 1);
-     timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
-     this.timeRange.start = this.convertDateTime(timeStart);
-     var timeEnd = timeStart;
-
-     // end time varies according to number of days in month
-     timeEnd.setMinutes(timeEnd.getMinutes() + (this.dayCount * 24 * 60));
-     this.timeRange.end = this.convertDateTime(timeEnd);
+     
+      // get date range for calendar data
+      this.getStartAndEndDates();
 
       // get the user
       events.subscribe('user', (user: any) => {
         this.userid = user;
-      
       });
       
       // get the selected league
@@ -95,6 +84,22 @@ export class CalendarComponent {
       events.subscribe('tab', (sport: any) => {
         this.selectedSport=sport.name;
       });
+  }
+
+  getStartAndEndDates(){  
+     // get data range adjusting for local time
+     this.zoneOffset = new Date().getTimezoneOffset();
+
+    // add/subtract offset
+     var timeStart = new Date(Number(this.calendarDate.getFullYear()), Number(this.calendarDate.getMonth()), 1, 0, 0, 1);
+     timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
+     this.timeRange.start = this.convertDateTime(timeStart);
+     var timeEnd = timeStart;
+     
+     // end time varies according to number of days in month
+     timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount-1) * 24 * 60));
+     this.timeRange.end = this.convertDateTime(timeEnd);
+    // console.log(this.timeRange);
   }
 
   convertDateTime(dateTime: Date): string{
@@ -140,8 +145,7 @@ export class CalendarComponent {
     var day: string;
     var localDate = new Date(game.date + " " + game.starttime);
     localDate.setMinutes(localDate.getMinutes() - this.zoneOffset);
-    day = localDate.getDate().toString();
-   
+    day = localDate.getDate().toString(); 
     if(day.length == 1){day = "0" + day}
     return Number(day);
   }
@@ -197,19 +201,10 @@ export class CalendarComponent {
       this.firstDay = new Date (firstDayString);
       this.firstDayNumber = this.firstDay.getDay();
 
-      // set new date range
-     var timeStart = new Date(Number(this.selectedYear), Number(this.selectedMonthNumber), 1, 0, 0, 1);
-     timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
-     this.timeRange.start = this.convertDateTime(timeStart);
-     var timeEnd = timeStart;
-
-     // adjust for leap year
-     this.isLeapYear();
-     
-     // end time varies according to number of days in month
-     timeEnd.setMinutes(timeEnd.getMinutes() + (this.dayCount * 24 * 60));
-     this.timeRange.end = this.convertDateTime(timeEnd);
-   
+      // adjust for leap year
+      this.isLeapYear();
+      // get date range for calendar data
+      this.getStartAndEndDates();
       // reload data
       this.loadGamesByDate();
   }

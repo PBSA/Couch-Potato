@@ -13,8 +13,6 @@ import * as Crypto from 'js-sha512';
 export class RegisterComponent {
 
  // registratoion component for new accounts
-
-
  private configData; any;
  private providerName: string = "";
  private userName: string = "";
@@ -27,7 +25,13 @@ export class RegisterComponent {
  constructor(private viewCtrl: ViewController, private _data: DataComponent, 
               private _alert: AlertComponent, private config: Config)  {
 
-    this.providerName = config.name;
+    // get the provider name
+    this._data.getServerConfig().subscribe(data =>{
+      this.configData = data;
+      console.log(this.configData);
+      this.providerName = this.configData.providers.name;
+    });
+   
   }
 
   register(){
@@ -49,7 +53,6 @@ export class RegisterComponent {
     
     // register new user.
     var userData: any = {};
-    
     
     // create a hashed password with the salt added.
     userData.username =  this.userName;
