@@ -120,7 +120,8 @@ export class SelectorComponent {
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error
-            if(retval.subcode = "460"){
+            //console.log(retval);
+            if(retval.subcode == "450"){
               // not normalized data.
               this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
             }
@@ -173,7 +174,7 @@ export class SelectorComponent {
     for (let team of this.teams){
         if(team.name == thisTeam){
           teamicon += team.icon;
-          return teamicon};
+          return teamicon.toLowerCase()};
     }
     return "";
   }
@@ -216,7 +217,7 @@ export class SelectorComponent {
       this._data.startGame(this.putData).subscribe(data=>{
         retval = data;
         if(retval.status != "200"){ // error
-          if(retval.subcode == "460"){
+          if(retval.subcode == "450"){
             // not normalized data.
             this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
           }
@@ -237,7 +238,7 @@ export class SelectorComponent {
       this._data.addScore(this.putData).subscribe(data=>{
       retval = data;
         if(retval.status != "200"){ // error
-            if(retval.subcode == "460"){
+            if(retval.subcode == "450"){
               // not normalized data.
               this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
             }
@@ -250,14 +251,17 @@ export class SelectorComponent {
           this.putData.whistle_end_time = new Date().toISOString();   
           this._data.finishGame(this.putData).subscribe(data=>{
             retval = data;
+         
             if(retval.status != "200"){ // error
-                if(retval.subcode == "460"){
+             
+                if(retval.subcode == "450"){
                   // not normalized data.
                   this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");
                 }
                 else{
                   this._alert.showError("Error " + retval.status, "[" + retval.subcode + "]: "+ retval.title);
                 }
+                
             }
           });
       });  

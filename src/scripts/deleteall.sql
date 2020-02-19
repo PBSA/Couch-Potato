@@ -2,22 +2,25 @@
 
 
 /*Http Log*/
-TRUNCATE TABLE  `couch-potato`.`httplog`;
+TRUNCATE TABLE  `couch_potato`.`httplog`;
 
 /*Error Log*/
-TRUNCATE TABLE  `couch-potato`.`errorlog`;
+TRUNCATE TABLE  `couch_potato`.`errorlog`;
 
 /*Incdients Log*/
-TRUNCATE TABLE  `couch-potato`.`incidents`;
-
-/*Events*/
-TRUNCATE TABLE  `couch-potato`.`events`;
+TRUNCATE TABLE  `couch_potato`.`incidents`;
 
 /*Games*/
-TRUNCATE TABLE  `couch-potato`.`games`;
+TRUNCATE TABLE  `couch_potato`.`games`;
 
 /*Progress*/
-TRUNCATE TABLE  `couch-potato`.`progress`;
+TRUNCATE TABLE  `couch_potato`.`progress`;
 
-/*Replays*/
-TRUNCATE TABLE  `couch-potato`.`replays`;
+
+/*Events*/
+TRUNCATE TABLE  `couch_potato`.`events`;
+
+
+
+
+

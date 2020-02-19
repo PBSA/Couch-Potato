@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `couch-potato` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `couch-potato`;
+CREATE DATABASE  IF NOT EXISTS `couch_potato` DEFAULT CHARACTER SET utf8mb4;
+USE `couch_potato`;
 -- MySQL dump 10.13  Distrib 8.0.12, for macos10.13 (x86_64)
 --
 -- Host: localhost    Database: couch-potato
