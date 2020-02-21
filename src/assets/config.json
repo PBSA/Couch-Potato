@@ -1,4 +1,5 @@
 {
-    "api_url": "http://35.182.190.80/",
+    
+    "api_url": "https://localhost/",
     "notifications": 3000
 }

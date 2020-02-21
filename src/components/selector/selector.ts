@@ -121,7 +121,6 @@ export class SelectorComponent {
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error
-            //console.log(retval);
             if(retval.subcode == "450"){
               // not normalized data.
               this._alert.showError("Error " + retval.status + ": Bad Request", "[" + retval.subcode + "] " + this.sport + " (" + this.activeLeague.name + ") not supported");

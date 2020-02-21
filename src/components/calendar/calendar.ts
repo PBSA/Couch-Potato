@@ -107,7 +107,7 @@ export class CalendarComponent {
      if(month.length == 1){month = "0" + month}
      if(hour.length == 1){hour = "0" + hour}
      if(minute.length == 1){minute = "0" + minute}
-    return dateTime.getFullYear() + "-" + month + "-" + day + " " + hour + ":" + minute;
+    return dateTime.getFullYear() + "-" + month + "-" + day;// + "T" + hour + ":" + minute;
 }
 
 

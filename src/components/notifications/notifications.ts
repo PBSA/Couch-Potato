@@ -22,12 +22,12 @@ export class NotificationsComponent {
     setInterval(() => {
       // update notifications every 3 seconds.
       this.createNotifications();
-        }, 3000);
+        }, 100000);
 
     setInterval(() => {
     // refresh notifications queue every 15 seconds.
       this.notifications = new Array();
-      }, 15000);
+      }, 100000);
   }
 
   createNotifications(){
