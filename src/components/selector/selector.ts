@@ -27,6 +27,7 @@ export class SelectorComponent {
   private lastGameId: any;
   private sport: string;
   private zoneOffset: number;
+  //private testicon =  "/assets/imgs/Soccer/EPL/chelsea.png";
 
   constructor(navParams: NavParams, 
               public navCtrl: NavController, private viewCtrl: ViewController, private user:UserComponent,
@@ -128,9 +129,9 @@ export class SelectorComponent {
             else{
               this._alert.showError("Error " + retval.status, "[" + retval.subcode + "]: "+ retval.title);
             }
-          }
-          
-          else{this.viewCtrl.dismiss("add",null,{animation: 'false', duration:0});}    
+          } 
+          else{this.viewCtrl.dismiss("add",null,{animation: 'false', duration:0});
+          }    
         });
         
         
@@ -170,11 +171,13 @@ export class SelectorComponent {
     // build using the league and team.
     var teamicon: string;
     
-    teamicon = "/assets/imgs/" + this.sport + "/" + this.activeLeague.name +"/"
+    teamicon = "/assets/imgs/" + this.sport + "/" + this.activeLeague.name +"/";
+    
     for (let team of this.teams){
         if(team.name == thisTeam){
           teamicon += team.icon;
-          return teamicon.toLowerCase()};
+          return teamicon.toLowerCase();
+        };
     }
     return "";
   }

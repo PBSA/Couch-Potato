@@ -8,13 +8,16 @@ TRUNCATE TABLE  `couch_potato`.`httplog`;
 TRUNCATE TABLE  `couch_potato`.`errorlog`;
 
 /*Incdients Log*/
-TRUNCATE TABLE  `couch_potato`.`incidents`;
+/*TRUNCATE TABLE  `couch_potato`.`incidents`;*/
+
+/*Progress*/
+TRUNCATE TABLE  `couch_potato`.`progress`;
+
 
 /*Games*/
 TRUNCATE TABLE  `couch_potato`.`games`;
 
-/*Progress*/
-TRUNCATE TABLE  `couch_potato`.`progress`;
+
 
 
 /*Events*/

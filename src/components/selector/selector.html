@@ -59,9 +59,9 @@
                         {{getLocalStartTime(event)}}
                     </ion-col>
                     <ion-col style="padding-top: 15px; max-width: 40%">
-                        <ion-img start style="background-color: transparent" [src] ="getTeamIcon(event.hometeam)"></ion-img>
+                        <img style="background-color: transparent; height:20px; width: 20px" [src]="getTeamIcon(event.hometeam)">
                                 {{event.hometeam}}  v {{event.awayteam}} 
-                        <ion-img end [src]="getTeamIcon(event.awayteam)" style="background-color: transparent"></ion-img>  
+                        <img style="background-color: transparent;  height:20px; width: 20px" [src]="getTeamIcon(event.awayteam)" >  
                     </ion-col >
                     <ion-col style="max-width: 6%;">                  
                             <ion-input [(ngModel)] = "event.homescore" no-padding type="number" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>  
