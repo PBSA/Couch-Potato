@@ -65,7 +65,7 @@ export class CalendarComponent {
      this.zoneOffset = new Date().getTimezoneOffset();
 
      // add/subtract offset
-     var timeStart = new Date(Number(this.calendarDate.getFullYear()), Number(this.calendarDate.getMonth()), 1, 0, 0, 1);
+     var timeStart = new Date();
      timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
      this.timeRange.start = this.convertDateTime(timeStart);
      var timeEnd = timeStart;
@@ -73,6 +73,9 @@ export class CalendarComponent {
      // end time varies according to number of days in month
      timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount-1) * 24 * 60));
      this.timeRange.end = this.convertDateTime(timeEnd);
+
+
+
     
       // get the user
       events.subscribe('user', (user: any) => {
@@ -82,6 +85,7 @@ export class CalendarComponent {
       // get the selected league
       events.subscribe('league', (league: any) => {
           this.selectedLeague = league;
+          //alert('here');
           this.loadGamesByDate();
       });
 
@@ -123,9 +127,10 @@ export class CalendarComponent {
       for(counter=0; counter <= this.dayCount; counter++){ 
           for(game of this.allGames){
               // need to adjust game dates from UTC back to local time
-                var day: number = this.getLocalDay((game));
-                //var newday =  Number(day.substr(8,2));
-                if(counter == day && game.league == this.selectedLeague.name){
+                var newdate: Date= this.getLocalDay(game);
+                var day: number = newdate.getDate();
+                var month: number = newdate.getMonth();
+                if(counter == day && game.league == this.selectedLeague.name && this.selectedMonthNumber == month){
                     numgames ++;
                 }
           }
@@ -137,13 +142,15 @@ export class CalendarComponent {
   }
 
   getLocalDay(game: any){
-    var day: string;
     var localDate = new Date(game.date + " " + game.starttime);
     localDate.setMinutes(localDate.getMinutes() - this.zoneOffset);
-    day = localDate.getDate().toString();
+    var day = localDate.getDate().toString();
+    var month = (localDate.getMonth() + 1).toString();
    
     if(day.length == 1){day = "0" + day}
-    return Number(day);
+
+    //return Number(day);
+    return localDate;
   }
 
   openSelector(x: number, y: number){
@@ -198,7 +205,7 @@ export class CalendarComponent {
       this.firstDayNumber = this.firstDay.getDay();
 
       // set new date range
-     var timeStart = new Date(Number(this.selectedYear), Number(this.selectedMonthNumber), 1, 0, 0, 1);
+     var timeStart = new Date();
      timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
      this.timeRange.start = this.convertDateTime(timeStart);
      var timeEnd = timeStart;
