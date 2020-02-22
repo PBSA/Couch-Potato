@@ -22,12 +22,12 @@ export class NotificationsComponent {
     setInterval(() => {
       // update notifications every 3 seconds.
       this.createNotifications();
-        }, 100000);
+        }, 3000);
 
     setInterval(() => {
-    // refresh notifications queue every 15 seconds.
+    // refresh notifications queue every 10 seconds.
       this.notifications = new Array();
-      }, 100000);
+      }, 10000);
   }
 
   createNotifications(){
@@ -48,13 +48,13 @@ export class NotificationsComponent {
     // start search at 10 days past
     start.setHours(today.getHours()-(24*10));
 
-    // end search at 2 hours ahead
-    end.setHours(end.getHours()+2);
+    // end search at 24 hours ahead
+    end.setHours(end.getHours()+24);
    
     // convert to same format as stored data.
     var startDate  = this.convertDateTime(start);
     var endDate  = this.convertDateTime(end);
-   
+
     this._data.getAllDataByDateRange(startDate, endDate).subscribe(data =>{
           this.allGames = data;
           var game: any;

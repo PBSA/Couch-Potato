@@ -73,9 +73,6 @@ export class CalendarComponent {
      // end time varies according to number of days in month
      timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount-1) * 24 * 60));
      this.timeRange.end = this.convertDateTime(timeEnd);
-
-
-
     
       // get the user
       events.subscribe('user', (user: any) => {
@@ -85,7 +82,6 @@ export class CalendarComponent {
       // get the selected league
       events.subscribe('league', (league: any) => {
           this.selectedLeague = league;
-          //alert('here');
           this.loadGamesByDate();
       });
 
@@ -96,7 +92,6 @@ export class CalendarComponent {
       });
 
       events.subscribe('tab', (sport: any) => {
-        //console.log(sport);
         this.selectedSport=sport.name;
       });
   }
