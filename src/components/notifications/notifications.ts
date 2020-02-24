@@ -20,13 +20,13 @@ export class NotificationsComponent {
     this.createNotifications();
 
     setInterval(() => {
-      // update notifications every 3 seconds.
+      // update notifications every second.
       this.createNotifications();
-        }, 3000);
+        }, 1000);
 
     setInterval(() => {
-    // refresh notifications queue every 10 seconds.
-      this.notifications = new Array();
+     //refresh notifications queue every 10 seconds.
+      this.notifications.length = 0;
       }, 10000);
   }
 
