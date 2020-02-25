@@ -45,6 +45,7 @@ export class MainPage {
     if(this.user.username == ""){this._alert.showError("Error", "Username not entered"); return};
     if(this.user.password == ""){this._alert.showError("Error", "Password not entered"); return};
     this.validate(); 
+    this.navCtrl.push(HomePage);
   }
 
     validate(){

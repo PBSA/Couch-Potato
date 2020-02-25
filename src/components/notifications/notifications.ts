@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Notifications} from '../../globals/globals';
 import { DataComponent } from '../../app/modules/data'; 
+import { Events } from 'ionic-angular';
+import { CalendarComponent } from '../../components/calendar/calendar';
 
 @Component({
+  providers:[CalendarComponent ],
   selector: 'notifications',
   templateUrl: 'notifications.html'
 })
@@ -14,7 +17,7 @@ export class NotificationsComponent {
   private allGames: any;
   private starttime: string;
 
-  constructor(private _data: DataComponent) {
+  constructor(private _data: DataComponent, private events: Events, private calendar: CalendarComponent ) {
 
     // load notifications on startup 
     this.createNotifications();
@@ -22,12 +25,28 @@ export class NotificationsComponent {
     setInterval(() => {
       // update notifications every second.
       this.createNotifications();
-        }, 1000);
+        }, 10000);
 
     setInterval(() => {
      //refresh notifications queue every 10 seconds.
       this.notifications.length = 0;
       }, 10000);
+  }
+
+  gameLink(note: Notifications){
+    // hyperlink to game from notification
+   
+        alert('here');     
+        var formattedDate = note.starttime;
+        var day = note.datetime.getDate().toString();
+        var month = (note.datetime.getMonth()+1).toString();
+        if(day.length == 1){day = "0" + day}
+        if(month.length == 1){month = "0" + month}
+        var thisDay = note.datetime.getFullYear() + "-" + month + "-" + day 
+        // get all league details
+        this._data.getLeagueDataByName(note.leaguename).subscribe(league =>{
+            this.calendar.presentModal(thisDay, formattedDate,league, note.sportname);  
+        });
   }
 
   createNotifications(){
@@ -65,6 +84,7 @@ export class NotificationsComponent {
             // diffrerence in minutes
             var diffTime = (gametime.getTime() - today.getTime()) / (1000*60);
             // first create notifications for games that start within one hour or less
+            game.datetime = gametime;
             if(game.name == "Not Started"){
                 if(diffTime < 0){priority = 'note note-high', this.addNote(game,priority, "SHOULD HAVE STARTED")};
                 if (diffTime >= 0 && diffTime < 15){priority = 'note note-medium', this.addNote(game,priority, "STARTS IN " + Math.round(diffTime) + " MINUTES")};
@@ -103,7 +123,7 @@ export class NotificationsComponent {
     this.noteExists(game);
     this.notifications.unshift({ sportid: game.sportid, sportname: game.sportname,leagueid: game.leagueid, leaguename: game.league, 
       eventid: game.eventid, gameid: game.gameid, hometeam: game.hometeam , 
-      awayteam: game.awayteam, starttime: starttime.toString().substring(0,21), class: priority, message: message, icon: game.icon});
+      awayteam: game.awayteam, starttime: starttime.toString().substring(0,21), class: priority, message: message, icon: game.icon, datetime: game.datetime});
     }
 
   noteExists(game: any){

@@ -9,7 +9,7 @@
 <ion-content class="content">
  <div style= "margin: 5px;">
     <div *ngFor="let note of notifications" >
-      <div [class]="note.class">
+      <div [class]="note.class" (click) = "gameLink(note)">
           <ion-grid no-padding>
             <ion-row class="row time-row">
                 <ion-col col-1>

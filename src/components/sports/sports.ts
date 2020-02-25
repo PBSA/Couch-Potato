@@ -16,14 +16,15 @@ export class SportsComponent {
   constructor(private _data: DataComponent, public events: Events) {
    
     this.loadSportsData();
-    //this.events.publish('tab', this.selectedTab);
-   
+  
   }
 
   loadSportsData(){
     // load all sports data for tabs
     this._data.getSportsData().subscribe(sport =>{
       this.allSports = sport;
+       // default to first sport
+       this.events.publish('tab', this.allSports[0]) ;  
       this.events.publish('sports', this.allSports);
     });
   }
@@ -32,7 +33,7 @@ export class SportsComponent {
     // select sport tab
     this.selectedTab = tab;
     sport.tab = tab;
-    this.events.publish('tab', sport)    
+    this.events.publish('tab', sport) ;   
   } 
   
 }

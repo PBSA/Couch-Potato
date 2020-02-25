@@ -7,21 +7,19 @@ TRUNCATE TABLE  `couch_potato`.`httplog`;
 /*Error Log*/
 TRUNCATE TABLE  `couch_potato`.`errorlog`;
 
-/*Incdients Log*/
-/*TRUNCATE TABLE  `couch_potato`.`incidents`;*/
+/* Incident Log */
+TRUNCATE TABLE  `couch_potato`.`incidents`;
 
-/*Progress*/
+/* Progress status */
 TRUNCATE TABLE  `couch_potato`.`progress`;
 
+/* Games */
+DELETE FROM  `couch_potato`.`games`;
 
-/*Games*/
-TRUNCATE TABLE  `couch_potato`.`games`;
+/* Events */
+DELETE FROM  `couch_potato`.`events`;
 
 
-
-
-/*Events*/
-TRUNCATE TABLE  `couch_potato`.`events`;
 
 
 

@@ -13,6 +13,7 @@ export class Notifications{
     class: string;
     message: string;
     icon: string;
+    datetime: Date;
 }
 
 export class AllSports{

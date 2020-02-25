@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController, Events } from 'ionic-angular';
 import { SelectorComponent } from '../../components/selector/selector';
 import { DataComponent } from '../../app/modules/data'; 
+import { Notifications} from '../../globals/globals';
 
 @Component({
   selector: 'calendar',
@@ -41,6 +42,7 @@ export class CalendarComponent {
   private userid: any;
   private zoneOffset: number;
   private dayCount: number;
+  private eventCount: number =0;
 
   constructor(private events: Events, private modalCtrl: ModalController,
     private _data: DataComponent) {
@@ -81,19 +83,31 @@ export class CalendarComponent {
       
       // get the selected league
       events.subscribe('league', (league: any) => {
-          this.selectedLeague = league;
+         this.selectedLeague = league;
           this.loadGamesByDate();
       });
 
+      // get selected sport
       events.subscribe('sports', (sports: any) => {
         this.allSports = sports;
         // default to first sport
         this.selectedSport=this.allSports[0].name;
       });
 
+      // get selected tab
       events.subscribe('tab', (sport: any) => {
         this.selectedSport=sport.name;
       });
+
+  }
+
+  ionViewDidEnter(){
+   
+
+  } 
+  
+  ionViewWillLeave(){
+    this.events.unsubscribe('link');
   }
 
   convertDateTime(dateTime: Date): string{
@@ -161,14 +175,15 @@ export class CalendarComponent {
       var dayOfWeek = this.days[selectedDay+1];
       var selectedDate = dayOfWeek + " " + dayNumber + " " + this.selectedMonth + ", " + this.selectedYear;
       // open selector modal
-      this.presentModal(thisDay, selectedDate);
+      this.presentModal(thisDay, selectedDate, this.selectedLeague, this.selectedSport);
+    
   }
 
- async presentModal(thisDay: string, formattedDate: string) {
-      let data = {'league': this.selectedLeague,
+ async presentModal(thisDay: string, formattedDate: string, league: any, sport:string) {
+      let data = {'league': league,
                   'date': thisDay,
                   'formattedDate': formattedDate,
-                  'sport': this.selectedSport,
+                  'sport': sport,
                   'userid': this.userid        
                 };
       let selectormodal = await this.modalCtrl.create(SelectorComponent, data, 
@@ -176,7 +191,7 @@ export class CalendarComponent {
 
         selectormodal.onDidDismiss(data => {
           if(data == "add"){
-            this.presentModal(thisDay, formattedDate);}
+            this.presentModal(thisDay, formattedDate, this.selectedLeague, this.selectedSport);}
           else { // refresh screen
             this.loadGamesByDate();
         }

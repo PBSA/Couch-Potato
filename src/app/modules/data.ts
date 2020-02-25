@@ -114,6 +114,11 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
+    getLeagueDataByName(league: string){
+      return this.http.get(this.url + "get_league_data_by_name.php", {params:{league: league}})
+      .map( data =>  this.result = data);
+    }
+
     getTeamsByLeague(league: number){
       return this.http.get(this.url + "get_teams_by_league.php", {params:{league: league.toString()}})
       .map( data =>  this.result = data);
