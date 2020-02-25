@@ -4,6 +4,7 @@ import { ViewController } from 'ionic-angular';
 import { DataComponent } from '../../app/modules/data'; 
 import { UserComponent } from '../../app/modules/user'; 
 import { AlertComponent } from '../../app/modules/alerts'; 
+import { Notifications} from '../../globals/globals';
 
 @Component({
   selector: 'selector',
@@ -27,7 +28,8 @@ export class SelectorComponent {
   private lastGameId: any;
   private sport: string;
   private zoneOffset: number;
-  //private testicon =  "/assets/imgs/Soccer/EPL/chelsea.png";
+  private note = new Notifications;
+
 
   constructor(navParams: NavParams, 
               public navCtrl: NavController, private viewCtrl: ViewController, private user:UserComponent,
@@ -38,6 +40,9 @@ export class SelectorComponent {
       this.date = navParams.get('date');
       this.formattedDate = navParams.get('formattedDate');
       this.sport = navParams.get('sport');
+      this.note = navParams.get('note');
+      console.log(this.note);
+      
       // get timezone offset in minutes
       this.zoneOffset = new Date().getTimezoneOffset();
       // add/subtract offset
@@ -47,7 +52,7 @@ export class SelectorComponent {
       var timeEnd = timeStart;
       timeEnd.setMinutes(timeEnd.getMinutes() + (24*60));
       this.timeRange.end = this.convertDateTime(timeEnd);
-     
+
       // get team data.
       this.getTeams();
       // get games data
@@ -68,7 +73,6 @@ export class SelectorComponent {
   }
 
   getTeams(){
-    //console.log(this.activeLeague);
       this._data.getTeamsByLeague(this.activeLeague.id).subscribe(teams =>{
           var allteams: any = teams;
           for (let team of allteams){ 
@@ -76,6 +80,16 @@ export class SelectorComponent {
           }
           this.teams.sort((a, b) => (a.name > b.name) ? 1 : -1)
       });
+  }
+
+  isSelected(game: any){
+    // was the game selected from a notification
+   if(this.note.hometeam != ""){
+        if(game.gameid == this.note.gameid){
+          return true;
+        }
+    }
+    return false;
   }
 
   getGames(){

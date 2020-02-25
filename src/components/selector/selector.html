@@ -54,14 +54,14 @@
         <!-- add any games for this day-->
         <div *ngFor="let event of events let y = index" >
             <ion-grid>
-                <ion-row class="game-row">
-                    <ion-col class="game-col">
+                <ion-row class = "game-row">
+                    <ion-col [class]="isSelected(event) ? 'game-col-selected' : 'game-col'">
                         {{getLocalStartTime(event)}}
                     </ion-col>
-                    <ion-col style="padding-top: 15px; max-width: 40%">
-                        <img style="background-color: transparent; height:20px; width: 20px" [src]="getTeamIcon(event.hometeam)">
+                    <ion-col [class]="isSelected(event) ? 'col-teams-selected' : 'col-teams'" >
+                        <img class="teams" [src]="getTeamIcon(event.hometeam)">
                                 {{event.hometeam}}  v {{event.awayteam}} 
-                        <img style="background-color: transparent;  height:20px; width: 20px" [src]="getTeamIcon(event.awayteam)" >  
+                        <img class="teams" [src]="getTeamIcon(event.awayteam)" >  
                     </ion-col >
                     <ion-col style="max-width: 6%;">                  
                             <ion-input [(ngModel)] = "event.homescore" no-padding type="number" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>  

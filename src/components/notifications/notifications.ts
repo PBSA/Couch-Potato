@@ -16,6 +16,7 @@ export class NotificationsComponent {
   private counter: number =0;
   private allGames: any;
   private starttime: string;
+  private note = new Notifications;
 
   constructor(private _data: DataComponent, private events: Events, private calendar: CalendarComponent ) {
 
@@ -42,7 +43,9 @@ export class NotificationsComponent {
       var thisDay = note.datetime.getFullYear() + "-" + month + "-" + day 
       // get all league details
       this._data.getLeagueDataByName(note.leaguename).subscribe(league =>{
-          this.calendar.presentModal(thisDay, note.starttime.substr(4,6) + ", " + note.starttime.substr(11,4),league, note.sportname);  
+          // find the selected game
+          //this.note = this.calendar.setSelectedGame();
+          this.calendar.presentModal(thisDay, note.starttime.substr(4,6) + ", " + note.starttime.substr(11,4),league, note.sportname, note);  
       });
   }
 

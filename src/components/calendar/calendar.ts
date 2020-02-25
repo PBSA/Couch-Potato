@@ -43,6 +43,7 @@ export class CalendarComponent {
   private zoneOffset: number;
   private dayCount: number;
   private eventCount: number =0;
+  private note = new Notifications;
 
   constructor(private events: Events, private modalCtrl: ModalController,
     private _data: DataComponent) {
@@ -152,6 +153,14 @@ export class CalendarComponent {
     return localDate;
   }
 
+  setSelectedGame(note: Notifications){
+
+    this.note = note;
+
+
+  }
+
+
   openSelector(x: number, y: number){
     // calculate the date clicked on.
       var dayNumber: string = (((x*7) + y) - (this.firstDayNumber)).toString();
@@ -165,15 +174,16 @@ export class CalendarComponent {
       var dayOfWeek = this.days[selectedDay+1];
       var selectedDate = dayOfWeek + " " + dayNumber + " " + this.selectedMonth + ", " + this.selectedYear;
       // open selector modal
-      this.presentModal(thisDay, selectedDate, this.selectedLeague, this.selectedSport);
+      this.presentModal(thisDay, selectedDate, this.selectedLeague, this.selectedSport, this.note);
     
   }
 
- async presentModal(thisDay: string, formattedDate: string, league: any, sport:string) {
+ async presentModal(thisDay: string, formattedDate: string, league: any, sport:string, note: Notifications) {
       let data = {'league': league,
                   'date': thisDay,
                   'formattedDate': formattedDate,
                   'sport': sport,
+                  'note': note,
                   'userid': this.userid        
                 };
       let selectormodal = await this.modalCtrl.create(SelectorComponent, data, 
@@ -181,7 +191,7 @@ export class CalendarComponent {
 
         selectormodal.onDidDismiss(data => {
           if(data == "add"){
-            this.presentModal(thisDay, formattedDate, this.selectedLeague, this.selectedSport);}
+            this.presentModal(thisDay, formattedDate, this.selectedLeague, this.selectedSport,this.note);}
           else { // refresh screen
             this.loadGamesByDate();
         }

@@ -42,8 +42,9 @@ $colors: (
   light-black: rgb(34, 34, 34),
   dark-grey:  rgb(68, 68, 68),
   medium-grey:  rgb(80, 80, 80),
-  bright-orange:  rgb(255, 153, 0),
+  bright-orange:  rgb(255, 194, 103),
   light-orange:  rgb(255, 185, 81),
+  very-light-orange:  rgb(248, 219, 175),
   blue-white:  rgb(220, 237, 253),
   medium-white:  rgb(221, 221, 221),
   dark-white:  rgb(165, 165, 165),
@@ -175,10 +176,6 @@ $colors: (
 .success-popup .alert-button:hover{
   color: color($colors,dark) !important;
 }
-
-
-
-
 
 // date picker
 .picker-md .picker-wrapper {
