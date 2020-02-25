@@ -17,9 +17,20 @@ page-home {
          font-size: 12pt;
          margin-top: 25px;
       }
+
+      .version{
+         color:color($colors,light);
+        font-size: 10pt;
+      }
    
      .small-icon{
         color: #FFBC1D;
+        font-size: 16pt;
+        cursor: pointer;
+     }
+
+     .small-icon:hover{
+      color: color($colors,light);
      }
     
      .thin-row{
@@ -27,13 +38,17 @@ page-home {
      }
 
      .logout{
-      font-size: 11pt;
+      font-size: 12pt;
       cursor:pointer;
+     }
+
+     .logout:hover{
+      color: #FFBC1D;
      }
     
      .thick-row{
         height: 30px;
-        font-size: 20pt;
+        font-size: 14pt;
     }
     
      .maintitle{

@@ -21,6 +21,7 @@ export class SportsComponent {
 
   loadSportsData(){
     // load all sports data for tabs
+   
     this._data.getSportsData().subscribe(sport =>{
       this.allSports = sport;
        // default to first sport

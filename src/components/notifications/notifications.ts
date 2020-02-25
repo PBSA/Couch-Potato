@@ -25,7 +25,7 @@ export class NotificationsComponent {
     setInterval(() => {
       // update notifications every second.
       this.createNotifications();
-        }, 10000);
+        }, 1000);
 
     setInterval(() => {
      //refresh notifications queue every 10 seconds.
@@ -35,22 +35,18 @@ export class NotificationsComponent {
 
   gameLink(note: Notifications){
     // hyperlink to game from notification
-   
-        alert('here');     
-        var formattedDate = note.starttime;
-        var day = note.datetime.getDate().toString();
-        var month = (note.datetime.getMonth()+1).toString();
-        if(day.length == 1){day = "0" + day}
-        if(month.length == 1){month = "0" + month}
-        var thisDay = note.datetime.getFullYear() + "-" + month + "-" + day 
-        // get all league details
-        this._data.getLeagueDataByName(note.leaguename).subscribe(league =>{
-            this.calendar.presentModal(thisDay, formattedDate,league, note.sportname);  
-        });
+      var day = note.datetime.getDate().toString();
+      var month = (note.datetime.getMonth()+1).toString();
+      if(day.length == 1){day = "0" + day}
+      if(month.length == 1){month = "0" + month}
+      var thisDay = note.datetime.getFullYear() + "-" + month + "-" + day 
+      // get all league details
+      this._data.getLeagueDataByName(note.leaguename).subscribe(league =>{
+          this.calendar.presentModal(thisDay, note.starttime.substr(4,6) + ", " + note.starttime.substr(11,4),league, note.sportname);  
+      });
   }
 
   createNotifications(){
-    
     // add time zone offset
     var zoneOffset = new Date().getTimezoneOffset();
 

@@ -50,8 +50,8 @@ export class SelectorComponent {
      
       // get team data.
       this.getTeams();
-      // get event data
-      this.getEvents();
+      // get games data
+      this.getGames();
   }
 
   convertDateTime(dateTime: Date): string{
@@ -68,6 +68,7 @@ export class SelectorComponent {
   }
 
   getTeams(){
+    //console.log(this.activeLeague);
       this._data.getTeamsByLeague(this.activeLeague.id).subscribe(teams =>{
           var allteams: any = teams;
           for (let team of allteams){ 
@@ -77,7 +78,7 @@ export class SelectorComponent {
       });
   }
 
-  getEvents(){
+  getGames(){
     this._data.getGamesByLeagueAndDate(this.activeLeague.name, this.timeRange.start, this.timeRange.end).subscribe(events =>{
         this.events = events; 
         if(this.events.status == "400"){
@@ -250,6 +251,7 @@ export class SelectorComponent {
         }
             // finish game since I don't think the result can be changed anyway!!
           this.putData.call= 'finish';
+          this.putData.whistle_start_time = game.whistle_start_time;
           this.putData.whistle_end_time = new Date().toISOString();   
           this._data.finishGame(this.putData).subscribe(data=>{
             retval = data;

@@ -28,7 +28,7 @@ export class RegisterComponent {
     // get the provider name
     this._data.getServerConfig().subscribe(data =>{
       this.configData = data;
-      console.log(this.configData);
+      //console.log(this.configData);
       this.providerName = this.configData.providers.name;
     });
    

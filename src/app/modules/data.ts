@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map'
 import { AlertComponent } from '../../app/modules/alerts'; 
+import { Config } from '../../app/modules/user'; 
 
 @Injectable()
 
@@ -12,11 +13,14 @@ export class DataComponent{
     private url: string;
     private configFile: any;
 
-    constructor(private http: HttpClient, private _alert: AlertComponent) {   
+    constructor(private http: HttpClient, private _alert: AlertComponent, private _config: Config) {   
         // load config data
             this.getClientConfig().subscribe(data => {
             this.configFile = data;
             this.url = this.configFile.api_url;
+            _config.api_url = this.url;
+            _config.notifications = this.configFile.notifications;
+            _config.version = this.configFile.version;
         });
     }
     

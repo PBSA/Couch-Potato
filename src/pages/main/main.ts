@@ -45,7 +45,7 @@ export class MainPage {
     if(this.user.username == ""){this._alert.showError("Error", "Username not entered"); return};
     if(this.user.password == ""){this._alert.showError("Error", "Password not entered"); return};
     this.validate(); 
-    this.navCtrl.push(HomePage);
+    //this.navCtrl.push(HomePage);
   }
 
     validate(){
@@ -67,11 +67,13 @@ export class MainPage {
           if(password1 === password2){
             // success
             this.user.id = userdata[0].id;
-            this.user.password = password2;
+            this.user.username = userdata[0].username;
+            //console.log(userdata);
+            this.user.password = "";
             this.navCtrl.push(HomePage);
           }
           else{
-            this._alert.showError("Error", "Invalid username or password")
+            this._alert.showError("Error", "Invalid username or password");
           }
         }         
       });

@@ -10,7 +10,7 @@ export class UserComponent {
 }
 
 export class Config{
-    name: string = '';
-    api_url: string = ''
-
+    notifications: string = '';
+    api_url: string = '';
+    version: string = '';
 }

@@ -66,15 +66,15 @@ export class CalendarComponent {
      // get data range adjusting for local time
      this.zoneOffset = new Date().getTimezoneOffset();
 
-     // add/subtract offset
-     var timeStart = new Date();
-     timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
+     var timeStart = new Date(this.selectedYear,this.selectedMonthNumber,1,0,0,1);
      this.timeRange.start = this.convertDateTime(timeStart);
      var timeEnd = timeStart;
 
      // end time varies according to number of days in month
-     timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount-1) * 24 * 60));
+     timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount) * 24 * 60));
      this.timeRange.end = this.convertDateTime(timeEnd);
+
+     //console.log(this.timeRange);
     
       // get the user
       events.subscribe('user', (user: any) => {
@@ -98,16 +98,6 @@ export class CalendarComponent {
       events.subscribe('tab', (sport: any) => {
         this.selectedSport=sport.name;
       });
-
-  }
-
-  ionViewDidEnter(){
-   
-
-  } 
-  
-  ionViewWillLeave(){
-    this.events.unsubscribe('link');
   }
 
   convertDateTime(dateTime: Date): string{
@@ -215,16 +205,17 @@ export class CalendarComponent {
       this.firstDayNumber = this.firstDay.getDay();
 
       // set new date range
-     var timeStart = new Date();
-     timeStart.setMinutes(timeStart.getMinutes() + this.zoneOffset);
+     var timeStart = new Date(this.selectedYear,this.selectedMonthNumber,1,0,0,1);
      this.timeRange.start = this.convertDateTime(timeStart);
      var timeEnd = timeStart;
+
+     
 
      // adjust for leap year
      this.isLeapYear();
      
      // end time varies according to number of days in month
-     timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount-1) * 24 * 60));
+     timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount) * 24 * 60));
      this.timeRange.end = this.convertDateTime(timeEnd);
    
       // reload data
