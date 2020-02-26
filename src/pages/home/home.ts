@@ -15,6 +15,7 @@ export class HomePage {
   public allSports : any;
   private localtime = Date.now().toString();
   private username: string = "";
+  private showMenu: boolean = false;
 
   constructor(public navCtrl: NavController, private navParams: NavParams,private _data: DataComponent, 
               private modalCtrl: ModalController, private events: Events, private user: UserComponent, 
@@ -38,8 +39,19 @@ export class HomePage {
     return await selectormodal.present();
 }
 
-  logOut(): void {
-    // go to main page
-    this.navCtrl.pop();
-    }
+personClick(){
+  // toggle profile menu
+  if(this.showMenu){this.showMenu = false;}
+  else{this.showMenu = true;}
+}
+
+changePassword(){
+  this.showMenu = false;
+}
+
+logOut(): void {
+  // go to main page
+  this.showMenu = false;
+  this.navCtrl.pop();
+  }
 }

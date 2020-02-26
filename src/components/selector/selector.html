@@ -108,7 +108,7 @@
                             <ion-list>   
                                 <ion-item no-lines class="team-item">
                                     <ion-label style="max-width:80px; color:black; font-size: 10pt;" no-padding >Home Team:</ion-label>
-                                        <ion-select   [(ngModel)] = "hometeam" interface="action-sheet" class="team-input">
+                                        <ion-select   [(ngModel)] = "hometeam" interface="popover" class="team-input">
                                             <ion-option *ngFor="let team of teams">
                                                 {{team.name}}
                                             </ion-option>
@@ -121,7 +121,7 @@
                             <ion-list>   
                                 <ion-item no-lines class="team-item">
                                     <ion-label class="ion-text-wrap" style="max-width:80px; color:black; font-size: 10pt;">Away Team:</ion-label>
-                                        <ion-select   [(ngModel)] = "awayteam"  interface="action-sheet" class="team-input">
+                                        <ion-select   [(ngModel)] = "awayteam"  interface="popover" class="team-input">
                                             <ion-option *ngFor="let team of teams">
                                                 {{team.name}}
                                             </ion-option>

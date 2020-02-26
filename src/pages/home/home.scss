@@ -9,8 +9,44 @@ page-home {
          background-color: transparent;
      }
 
+     .menu{
+        max-width: 60%;
+        background-color: color($colors,light-blue);
+        color: color($colors,light);
+        text-align: center;
+        font-size: 12pt;
+     }
+
+     .menu-col{
+        height: 40px;
+        color: color($colors,light);
+        text-align: left;
+        font-size: 12pt;
+        background-color: color($colors,light-blue-grey);
+        border-style: solid;
+        border-color: color($colors,light);
+        padding-left: 20px;
+        
+     }
+
+     .menu-col:hover{
+      background-color: color($colors,light-blue);
+      cursor: pointer;
+     }
+
+     .menu-list{
+      border-width: 1px 1px 0px 1px;
+      padding-top: 10px;
+     }
+
+     .menu-bottom{
+      border-width: 0px 1px 1px 1px;
+
+     }
+
+
     .replay{
-         width: 80%;
+         width: 60%;
          color: color($colors,light);
          border-radius: 10px;
          height: 40px;
@@ -32,6 +68,7 @@ page-home {
         cursor: pointer;
         padding-right: 5px;
         color: color($colors,light);
+        min-width: 200px;
      }
 
      .person:hover{
@@ -80,13 +117,9 @@ page-home {
         padding-top: 40px; 
         padding-right: 50px;
         border-radius: 0;
-        //height:100%;
      }
 
      .notifications-background{
-      border-radius: 0px 10px 10px 0px;
-      //height: 400px;
-      //width: 70%;
-   }
-     
+         border-radius: 0px 10px 10px 0px;
+     }
 }

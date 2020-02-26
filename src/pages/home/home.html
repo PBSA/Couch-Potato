@@ -21,14 +21,25 @@
                 <ion-col col-2 text-right>
                     <ion-row class="thin-row">
                           <ion-col class = "small-icon">
-                              <span class = "person" ><ion-icon item-start name="person"> </ion-icon> &nbsp;{{user.username}}</span>
-                          </ion-col>  
+                              <div (click)='personClick()' class = "person" ><ion-icon item-start name="person"> </ion-icon> &nbsp;{{user.username}}</div>
+                              <div  *ngIf="showMenu == true" >
+                                  <ion-grid >
+                                        <ion-row >
+                                            <ion-col  col-4></ion-col>
+                                            <ion-col (click)='changePassword()' class="menu-col menu-list" col-8>
+                                                    Change Password
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row   >
+                                            <ion-col  col-4></ion-col>
+                                            <ion-col  (click)='logOut()' class="menu-col menu-bottom" col-8>
+                                                Log Out
+                                            </ion-col>
+                                        </ion-row>
+                                  </ion-grid>
+                              </div>
+                          </ion-col> 
                     </ion-row>
-                    <ion-row  (click)='logOut()'text-right>
-                          <ion-col no-padding >
-                                <span class="logout">Log Out</span>
-                          </ion-col>
-                      </ion-row>
                 </ion-col>
             </ion-row>
         </ion-grid>

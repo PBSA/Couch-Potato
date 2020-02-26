@@ -17,17 +17,17 @@ notifications {
     background-color: rgb(66, 39, 39)!important;
     }  
 
-
     .toolbar-background{
-        background-color: color($colors,light-blue) !important;
+        background-color: color($colors,blue-grey) !important;
+        border-radius: 0px 10px 0px 0px;
     }
 
     .toolbar-title{
         color: color($colors,light);
         padding-top: 0px;
         text-align: center; 
-        font-size: 13pt;
-        text-decoration: underline;
+        font-size: 15pt;
+        //text-decoration: underline;
     }
 
     .content{
