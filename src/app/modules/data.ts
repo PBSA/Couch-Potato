@@ -138,6 +138,11 @@ export class DataComponent{
       return this.http.post(this.url + "add_user.php", putData, {headers})
     }
 
+    changePassword(putData: any){
+      var headers = this.getJSONHeader();
+      return this.http.put(this.url + "change_password.php?" , putData, {headers}).map( data =>  this.result = data);
+    }
+
     deleteGame(putData: any){
       var headers = this.getHttpHeader();
       let httpParams = new HttpParams().set('id', putData.id);

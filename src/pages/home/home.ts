@@ -4,6 +4,7 @@ import { NavController, NavParams, ModalController, Events } from 'ionic-angular
 import { DataComponent } from '../../app/modules/data'; 
 import { UserComponent, Config } from '../../app/modules/user'; 
 import { ReplayComponent } from '../../components/replay/replay'; 
+import { PasswordComponent } from '../../components/password/password';
 
 @Component({
   selector: 'page-home',
@@ -24,8 +25,6 @@ export class HomePage {
       setInterval(() => {
         this.localtime = Date.now().toString();
       });
-
-      console.log(config);
   }
 
   openReplay(){
@@ -47,6 +46,14 @@ personClick(){
 
 changePassword(){
   this.showMenu = false;
+    this.passwordModal();
+  }
+
+async passwordModal() {
+    let selectormodal = await this.modalCtrl.create(PasswordComponent,null,
+        {cssClass: "password-modal"});
+    return await selectormodal.present();
+
 }
 
 logOut(): void {

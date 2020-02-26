@@ -13,10 +13,10 @@
         
         <h2>
             <div style="padding-top: 40px;">
-                <input [(ngModel)] = "user.username" maxlength="24" placeholder="User name" class="input" >
+                <input [(ngModel)] = "_user.username" maxlength="24" placeholder="User name" class="input" >
             </div>
             <div style="padding-top: 10px;">
-                  <input [(ngModel)] = "user.password" (keyup.enter)="onClickLogin()" type="Password" maxlength="40" placeholder="Password" class="input">
+                  <input [(ngModel)] = "_user.password" (keyup.enter)="onClickLogin()" type="Password" maxlength="40" placeholder="Password" class="input">
             </div>
            <br>
             <button (click)='onClickLogin()' ion-button>Login</button>

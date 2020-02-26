@@ -99,6 +99,18 @@ $colors: (
   width: 40%;
 }
 
+.password-modal .modal-wrapper {
+  height: 40%;
+  border-radius: 20px !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: color($colors,light);
+  position: absolute;
+  left: 35%;
+  top: 30%;
+  width: 30%;
+}
+
 // message popups
 .alert-popup .alert-wrapper{
   background-color:color($colors,medium-blue) !important;

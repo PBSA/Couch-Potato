@@ -15,6 +15,7 @@ import { LeaguesComponent } from '../components/leagues/leagues';
 import { TeamsComponent } from '../components/teams/teams';
 import { ReplayComponent } from '../components/replay/replay';
 import { CalendarComponent } from '../components/calendar/calendar';
+import { PasswordComponent } from '../components/password/password';
 import { NotificationsComponent } from '../components/notifications/notifications';
 import { RegisterComponent } from '../components/register/register';
 import { HttpClientModule, HttpParams } from '@angular/common/http'; 
@@ -32,6 +33,7 @@ import { HttpClientModule, HttpParams } from '@angular/common/http';
     ReplayComponent,
     NotificationsComponent,
     RegisterComponent,
+    PasswordComponent,
   ],
 
   imports: [
@@ -48,6 +50,7 @@ import { HttpClientModule, HttpParams } from '@angular/common/http';
     SelectorComponent,
     ReplayComponent,
     RegisterComponent,
+    PasswordComponent,
   ],
 
   providers: [
@@ -64,6 +67,7 @@ import { HttpClientModule, HttpParams } from '@angular/common/http';
     NotificationsComponent,
     SelectorComponent,
     RegisterComponent,
+    PasswordComponent,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

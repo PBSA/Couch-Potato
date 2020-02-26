@@ -21,7 +21,7 @@ export class MainPage {
   title1 = 'Couch';
   title2 = 'Potato';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private events: Events, private user: UserComponent,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private events: Events, private _user: UserComponent,
               private _ctrl: ModalController, private _data: DataComponent, private _alert: AlertComponent, 
              private _http: HttpClient) {
             
@@ -42,41 +42,39 @@ export class MainPage {
   onClickLogin(): void {
 
     //validate credentials
-    if(this.user.username == ""){this._alert.showError("Error", "Username not entered"); return};
-    if(this.user.password == ""){this._alert.showError("Error", "Password not entered"); return};
-    this.validate(); 
-    //this.navCtrl.push(HomePage);
+    if(this._user.username == ""){this._alert.showError("Error", "Username not entered"); return};
+    if(this._user.password == ""){this._alert.showError("Error", "Password not entered"); return};
+    this.validate();
   }
 
-    validate(){
-      var userdata: any;
-      
-      // first get the record that matches the username.
-      this._data.getUser(this.user.username).subscribe(user =>{
-        userdata = user;
-        if(Object.keys(userdata).length == 0){
-          this._alert.showError("Error", "Invalid username or password")
-          return;
+  validate(){
+    var userdata: any;
+    
+    // first get the record that matches the username.
+    this._data.getUser(this._user.username).subscribe(user =>{
+      userdata = user;
+      if(Object.keys(userdata).length == 0){
+        this._alert.showError("Error", "Invalid username or password")
+        return;
+      }
+      else{
+        // encrypt password with salt and compare.
+        this._user.salt = userdata[0].salt;
+        var password1 = userdata[0].password;
+        var password2 = Crypto.sha512_256(this._user.password + this._user.salt);
+
+        if(password1 === password2){
+          // success
+          this._user.id = userdata[0].id;
+          this._user.username = userdata[0].username;
+          this._user.password  = password1;
+          this.navCtrl.push(HomePage);
         }
         else{
-          // encrypt password with salt and compare.
-          var salt = userdata[0].salt;
-          var password1 = userdata[0].password;
-          var password2 = Crypto.sha512_256(this.user.password + salt);
-
-          if(password1 === password2){
-            // success
-            this.user.id = userdata[0].id;
-            this.user.username = userdata[0].username;
-            //console.log(userdata);
-            this.user.password = "";
-            this.navCtrl.push(HomePage);
-          }
-          else{
-            this._alert.showError("Error", "Invalid username or password");
-          }
-        }         
-      });
-    }
+          this._alert.showError("Error", "Invalid username or password");
+        }
+      }         
+    });
+  }
 
 }

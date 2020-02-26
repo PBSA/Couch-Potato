@@ -1,4 +1,4 @@
-import { Component, Renderer2 , ElementRef, ViewChild} from '@angular/core';
+import { Component, ElementRef, ViewChild} from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { DataComponent } from '../../app/modules/data';
 import { Config } from '../../app/modules/user';
@@ -28,7 +28,6 @@ export class RegisterComponent {
     // get the provider name
     this._data.getServerConfig().subscribe(data =>{
       this.configData = data;
-      //console.log(this.configData);
       this.providerName = this.configData.providers.name;
     });
    
@@ -37,7 +36,9 @@ export class RegisterComponent {
   register(){
     // need to validate first
     if(this.userName == ""){this._alert.showError("Error", "Username not entered"); return};
+    if(this.userName.length < 8){this._alert.showError("Error", "Username must be at least 8 characters"); return};
     if(this.password == ""){this._alert.showError("Error", "Password not entered"); return};
+    if(this.password.length < 8){this._alert.showError("Error", "Password must be at least 8 characters"); return};
     if(this.confirmPassword == ""){this._alert.showError("Error", "Confirm Password not entered"); return};
     if(this.email == ""){this._alert.showError("Error", "Email not entered"); return};
     if(!this.emailIsValid(this.email)){

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserComponent {
     id: number = 0;
     username: string = '';
+    salt: string = '';
     password: string = '';
 }
 

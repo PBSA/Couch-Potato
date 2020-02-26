@@ -41,7 +41,6 @@ export class SelectorComponent {
       this.formattedDate = navParams.get('formattedDate');
       this.sport = navParams.get('sport');
       this.note = navParams.get('note');
-      console.log(this.note);
       
       // get timezone offset in minutes
       this.zoneOffset = new Date().getTimezoneOffset();

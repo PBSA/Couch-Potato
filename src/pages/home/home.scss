@@ -26,24 +26,23 @@ page-home {
         border-style: solid;
         border-color: color($colors,light);
         padding-left: 20px;
-        
      }
 
-     .menu-col:hover{
+   .menu-col:hover{
       background-color: color($colors,light-blue);
       cursor: pointer;
-     }
+   }
 
-     .menu-list{
-      border-width: 1px 1px 0px 1px;
+   .menu-list{
+      border-width: 2px 2px 0px 1px;
+      border-radius: 10px 10px 0px 0px;
       padding-top: 10px;
-     }
+   }
 
-     .menu-bottom{
-      border-width: 0px 1px 1px 1px;
-
-     }
-
+   .menu-bottom{
+      border-width: 0px 2px 2px 1px;
+      border-radius: 0px 0px 10px 10px;
+   }
 
     .replay{
          width: 60%;

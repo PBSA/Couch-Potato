@@ -7,6 +7,7 @@ import { SelectorComponent } from './selector/selector';
 import { NotificationsComponent } from './notifications/notifications';
 import { ReplayComponent } from './replay/replay';
 import { RegisterComponent } from './register/register';
+import { PasswordComponent } from './password/password';
 @NgModule({
 	declarations: [SportsComponent,
     LeaguesComponent,
@@ -17,7 +18,9 @@ import { RegisterComponent } from './register/register';
     SelectorComponent,
     NotificationsComponent,
     ReplayComponent,
-    RegisterComponent],
+    RegisterComponent,
+    PasswordComponent,
+    PasswordComponent],
 	imports: [],
 	exports: [SportsComponent,
     LeaguesComponent,
@@ -28,6 +31,8 @@ import { RegisterComponent } from './register/register';
     SelectorComponent,
     NotificationsComponent,
     ReplayComponent,
-    RegisterComponent]
+    RegisterComponent,
+    PasswordComponent,
+    PasswordComponent]
 })
 export class ComponentsModule {}
