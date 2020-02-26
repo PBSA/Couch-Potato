@@ -3,6 +3,7 @@ import { Notifications} from '../../globals/globals';
 import { DataComponent } from '../../app/modules/data'; 
 import { Events } from 'ionic-angular';
 import { CalendarComponent } from '../../components/calendar/calendar';
+import { Config } from '../../app/modules/user'; 
 
 @Component({
   providers:[CalendarComponent ],
@@ -17,16 +18,20 @@ export class NotificationsComponent {
   private allGames: any;
   private starttime: string;
   private note = new Notifications;
+  private zoneOffset: number;
 
-  constructor(private _data: DataComponent, private events: Events, private calendar: CalendarComponent ) {
+  constructor(private _data: DataComponent, private events: Events, private calendar: CalendarComponent, private config: Config ) {
 
+      // get time zone offset
+    this.zoneOffset = new Date().getTimezoneOffset();
+ 
     // load notifications on startup 
     this.createNotifications();
 
     setInterval(() => {
-      // update notifications every second.
+      // update notifications;
       this.createNotifications();
-        }, 1000);
+        }, Number(config.notifications));
 
     setInterval(() => {
      //refresh notifications queue every 10 seconds.
@@ -35,33 +40,35 @@ export class NotificationsComponent {
   }
 
   gameLink(note: Notifications){
-    // hyperlink to game from notification
-      var day = note.datetime.getDate().toString();
-      var month = (note.datetime.getMonth()+1).toString();
+   
+      // get local time
+      var localTime = note.datetime;
+       // adjust for time zone
+      localTime.setMinutes(localTime.getMinutes() - this.zoneOffset);
+      var day = localTime.getDate().toString();
+      var month = (localTime.getMonth()+1).toString();
+
       if(day.length == 1){day = "0" + day}
       if(month.length == 1){month = "0" + month}
-      var thisDay = note.datetime.getFullYear() + "-" + month + "-" + day 
+      var thisDay = localTime.getFullYear() + "-" + month + "-" + day 
       // get all league details
       this._data.getLeagueDataByName(note.leaguename).subscribe(league =>{
           // find the selected game
-          //this.note = this.calendar.setSelectedGame();
           this.calendar.presentModal(thisDay, note.starttime.substr(4,6) + ", " + note.starttime.substr(11,4),league, note.sportname, note);  
       });
   }
 
   createNotifications(){
-    // add time zone offset
-    var zoneOffset = new Date().getTimezoneOffset();
-
+  
      // add/subtract offset
     var today = new Date();
     var start = new Date();
     var end = new Date();
 
     // add/subtract time zone offset
-    start.setMinutes(start.getMinutes() + zoneOffset);
-    end.setMinutes(end.getMinutes() + zoneOffset);
-    today.setMinutes(today.getMinutes() + zoneOffset);
+    start.setMinutes(start.getMinutes() + this.zoneOffset);
+    end.setMinutes(end.getMinutes() + this.zoneOffset);
+    today.setMinutes(today.getMinutes() + this.zoneOffset);
 
     // start search at 10 days past
     start.setHours(today.getHours()-(24*10));
@@ -76,6 +83,7 @@ export class NotificationsComponent {
     this._data.getAllDataByDateRange(startDate, endDate).subscribe(data =>{
           this.allGames = data;
           var game: any;
+         
           // loop through all the games
           for(game of this.allGames){
             var priority = "";
@@ -118,11 +126,14 @@ export class NotificationsComponent {
   addNote(game: any, priority: string, message: string){
    
     var starttime = new Date(game.datetime);
+    // adjust for time zone
+    starttime.setMinutes(starttime.getMinutes() - this.zoneOffset);
     // only add a note if it isn't already in the list
     this.noteExists(game);
     this.notifications.unshift({ sportid: game.sportid, sportname: game.sportname,leagueid: game.leagueid, leaguename: game.league, 
       eventid: game.eventid, gameid: game.gameid, hometeam: game.hometeam , 
-      awayteam: game.awayteam, starttime: starttime.toString().substring(0,21), class: priority, message: message, icon: game.icon, datetime: game.datetime});
+      awayteam: game.awayteam, starttime: starttime.toString().substring(0,21), class: priority, message: message, icon: game.icon, datetime: game.datetime, leagueicon: game.leagueicon});
+
     }
 
   noteExists(game: any){

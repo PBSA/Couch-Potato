@@ -26,11 +26,16 @@ page-home {
      .small-icon{
         color: #FFBC1D;
         font-size: 16pt;
-        cursor: pointer;
      }
 
-     .small-icon:hover{
-      color: color($colors,light);
+     .person{
+        cursor: pointer;
+        padding-right: 5px;
+        color: color($colors,light);
+     }
+
+     .person:hover{
+      color: orange;
      }
     
      .thin-row{
@@ -40,10 +45,13 @@ page-home {
      .logout{
       font-size: 12pt;
       cursor:pointer;
+      padding-right: 10px;
+      color:color($colors,light);
      }
 
      .logout:hover{
-      color: #FFBC1D;
+      font-size: 12pt;
+      color: orange;
      }
     
      .thick-row{

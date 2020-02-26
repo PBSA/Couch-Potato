@@ -75,8 +75,6 @@ export class CalendarComponent {
      timeEnd.setMinutes(timeEnd.getMinutes() + ((this.dayCount) * 24 * 60));
      this.timeRange.end = this.convertDateTime(timeEnd);
 
-     //console.log(this.timeRange);
-    
       // get the user
       events.subscribe('user', (user: any) => {
         this.userid = user;
@@ -152,14 +150,6 @@ export class CalendarComponent {
     //return Number(day);
     return localDate;
   }
-
-  setSelectedGame(note: Notifications){
-
-    this.note = note;
-
-
-  }
-
 
   openSelector(x: number, y: number){
     // calculate the date clicked on.

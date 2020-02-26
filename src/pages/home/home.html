@@ -21,12 +21,12 @@
                 <ion-col col-2 text-right>
                     <ion-row class="thin-row">
                           <ion-col class = "small-icon">
-                              <ion-icon item-start name="person"> </ion-icon> &nbsp;{{user.username}}
+                              <span class = "person" ><ion-icon item-start name="person"> </ion-icon> &nbsp;{{user.username}}</span>
                           </ion-col>  
                     </ion-row>
-                    <ion-row class="logout" (click)='logOut()'text-right>
+                    <ion-row  (click)='logOut()'text-right>
                           <ion-col no-padding >
-                                Log Out
+                                <span class="logout">Log Out</span>
                           </ion-col>
                       </ion-row>
                 </ion-col>

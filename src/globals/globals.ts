@@ -14,6 +14,7 @@ export class Notifications{
     message: string;
     icon: string;
     datetime: Date;
+    leagueicon: string;
 }
 
 export class AllSports{

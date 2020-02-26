@@ -1,6 +1,6 @@
 {
     
     "api_url": "https://localhost/",
-    "notifications": 3000,
+    "notifications": 2000,
     "version": "v1.0.0.a"
 }
