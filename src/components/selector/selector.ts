@@ -131,7 +131,6 @@ export class SelectorComponent {
       // remove seconds
       this.starttime = this.starttime.substring(0,5);
       putData.start_time = new Date(this.date + " " + this.starttime).toISOString();
-      
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error
@@ -146,8 +145,6 @@ export class SelectorComponent {
           else{this.viewCtrl.dismiss("add",null,{animation: 'false', duration:0});
           }    
         });
-        
-        
   }
 
   dismiss(){
