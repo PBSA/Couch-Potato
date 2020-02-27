@@ -78,16 +78,6 @@ export class DataComponent{
     }
     // end of incident calls
 
-    putHttpMessage(putData: any){
-      var headers = this.getHttpHeader();
-      return this.http.post(this.url + "put_httpmessage.php", putData, {headers}).subscribe(data=>{});
-    }
-
-    putErrorMessage(putData: any){
-      var headers = this.getHttpHeader();
-      return this.http.post(this.url + "put_errormessage.php", putData, {headers}).subscribe(data=>{});
-    }
-
     runReplay(sport: string, league: string, start: string, end: string){
       return this.http.get(this.url + "run_replay.php", {params:{sport: sport, leagues: league, start: start, end: end}})
         .map(data => this.result = data);

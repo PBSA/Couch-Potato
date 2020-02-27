@@ -4,17 +4,7 @@ page-home {
      }
     
      .toolbar-title-md{
-         //font-size: 30px;
-         //font-weight: bold;
          background-color: transparent;
-     }
-
-     .menu{
-        max-width: 60%;
-        background-color: color($colors,light-blue);
-        color: color($colors,light);
-        text-align: center;
-        font-size: 12pt;
      }
 
      .menu-col{
@@ -25,7 +15,7 @@ page-home {
         background-color: color($colors,light-blue-grey);
         border-style: solid;
         border-color: color($colors,light);
-        padding-left: 20px;
+        padding-left: 10px;
      }
 
    .menu-col:hover{
@@ -34,14 +24,14 @@ page-home {
    }
 
    .menu-list{
-      border-width: 2px 2px 0px 1px;
-      border-radius: 10px 10px 0px 0px;
+      border-width: 1px 1px 0px 1px;
+      //border-radius: 10px 10px 0px 0px;
       padding-top: 10px;
    }
 
    .menu-bottom{
-      border-width: 0px 2px 2px 1px;
-      border-radius: 0px 0px 10px 10px;
+      border-width: 0px 1px 1px 1px;
+      //border-radius: 0px 0px 10px 10px;
    }
 
     .replay{

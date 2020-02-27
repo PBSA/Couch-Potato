@@ -38,8 +38,8 @@ export class PasswordComponent {
       this.password2.nativeElement.focus();
       return
     };
-    return;
-    /* update user record
+    
+    // update user record
     var userData: any = {};
     var retval: any;
     
@@ -47,17 +47,18 @@ export class PasswordComponent {
     userData.salt = this.newGuid();
     userData.password  = Crypto.sha512_256(this.newPassword + userData.salt);
     userData.userid = this._user.id;
+    userData.username = this._user.username;
    
     this._data.changePassword(userData).subscribe(data=>{
         retval = data;
         if(retval.status == "200"){ //all good
-            this._alert.showSuccess("Password Successfully Changed","");   
+            this._alert.showSuccess(retval.title,retval.message);   
+            this.viewCtrl.dismiss(); 
         }
         else{
-          this._alert.showError("Error " + retval.status + ": Update Error", "[" + retval.subcode + "] " + "Failed to change password");
+          this._alert.showError("Error " + retval.status + ": Update Error", "[" + retval.subcode + "] " +  retval.title );
         }
     });
-    this.viewCtrl.dismiss(); */
   }
 
   validatePassword(): boolean{
@@ -65,8 +66,7 @@ export class PasswordComponent {
       var salt = this._user.salt;
       var password1 = this._user.password;
       var password2 = Crypto.sha512_256(this.currentPassword + salt);
-      if(password1 === password2){return true}
-      else{return false}
+      return (password1 === password2);
   }
   
   newGuid(){
@@ -80,6 +80,5 @@ export class PasswordComponent {
   dismiss(){
     this.viewCtrl.dismiss();
   }
-  
 
 }
