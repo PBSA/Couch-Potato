@@ -121,9 +121,11 @@ export class CalendarComponent {
       var counter:number = 1;
       var numgames: number = 0;
       var game: any
-
+    
       for(counter=0; counter <= this.dayCount; counter++){ 
+        
           for(game of this.allGames){
+          
               // need to adjust game dates from UTC back to local time
                 var newdate: Date= this.getLocalDay(game);
                 var day: number = newdate.getDate();
