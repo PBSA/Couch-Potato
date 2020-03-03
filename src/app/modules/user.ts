@@ -14,4 +14,8 @@ export class Config{
     notifications: string = '';
     api_url: string = '';
     version: string = '';
+    title1: string = '';
+    title2: string = '';
+    logolarge: string = '';
+    logosmall: string = '';
 }

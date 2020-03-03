@@ -21,6 +21,10 @@ export class DataComponent{
             _config.api_url = this.url;
             _config.notifications = this.configFile.notifications;
             _config.version = this.configFile.version;
+            _config.title1 = this.configFile.title1;
+            _config.title2 = this.configFile.title2;
+            _config.logosmall = this.configFile.logosmall;
+            _config.logolarge = this.configFile.logolarge;
         });
     }
     

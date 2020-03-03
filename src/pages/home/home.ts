@@ -49,15 +49,6 @@ personClick(){
   else{this.showMenu = true;}
 }
 
-hideMenu(){
-  //alert('here');
-  this.showMenu = false;
-}
-
-displayMenu(){
-  //alert('here');
-  this.showMenu = true;
-}
 
 changePassword(){
   this.showMenu = false;

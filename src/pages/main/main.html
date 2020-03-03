@@ -1,12 +1,12 @@
 <ion-content padding class="background-gradient">
     <body padding>
       <div style="text-align: center; padding-top: 100px;">
-          <span class = "title-white large-title-white">{{ title1 }}</span>
-          <span class = "title-orange large-title-orange">{{ title2 }}</span>
+          <span class = "title-white large-title-white">{{_config.title1}}</span>&nbsp;
+          <span class = "title-orange large-title-orange">{{_config.title2}}</span>
       </div>
       
       <div  style="text-align:center; align-content: center; margin-top: 20px">
-      <img width="20%" alt="Couch Potato Logo" src= "/assets/imgs/couch-potato-main.png">
+      <img width="20%" [src]= "_config.logolarge">
       </div>
       
       <div style="text-align: center; padding-bottom: 50px; width:100%">
@@ -23,8 +23,6 @@
         </h2>
         <div >
           <span class="register-user" (click) = 'registerUser()'>Create Account</span>
-          <!--span class="pipe">|</span>
-          <span class="forgot-password">Forgot Password?</span-->
         </div>
       </div>
       </body>

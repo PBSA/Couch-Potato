@@ -5,8 +5,8 @@
         <ion-grid style="padding: 0px 0px 0px 30px">
             <ion-row no-padding>
                 <ion-col col-4>
-                      <img width="120" height="80" alt="Couch Potato" src= "/assets/imgs/couch-potato.png" class="logo">
-                      <span class ="small-title-white title-white">Couch</span><span class ="small-title-orange title-orange">Potato <span class ="version"> {{config.version}} </span></span> 
+                      <img width="120" height="80" [src]= "config.logosmall" class="logo">
+                      <span class ="small-title-white title-white">{{config.title1}}</span>&nbsp;<span class ="small-title-orange title-orange">{{config.title2}} <span class ="version"> {{config.version}} </span></span> 
                 </ion-col>
                 <ion-col col-4 text-center>
                       <ion-icon style="font-size:30pt" name="clock"></ion-icon> 

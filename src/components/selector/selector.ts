@@ -131,6 +131,8 @@ export class SelectorComponent {
       // remove seconds
       this.starttime = this.starttime.substring(0,5);
       putData.start_time = new Date(this.date + " " + this.starttime).toISOString();
+      // lose the last precision
+      putData.start_time = putData.start_time.substring(0,19) +"Z";
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error

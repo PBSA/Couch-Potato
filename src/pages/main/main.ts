@@ -5,10 +5,9 @@ import { RegisterComponent } from '../../components/register/register';
 import { ModalController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { DataComponent } from '../../app/modules/data'; 
-import { UserComponent } from '../../app/modules/user'; 
+import { UserComponent, Config } from '../../app/modules/user'; 
 import { AlertComponent } from '../../app/modules/alerts'; 
 import * as Crypto from 'js-sha512';
-
 
 @IonicPage()
 
@@ -17,14 +16,11 @@ import * as Crypto from 'js-sha512';
   templateUrl: 'main.html',
 })
 export class MainPage {
-  
-  title1 = 'Couch';
-  title2 = 'Potato';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private events: Events, private _user: UserComponent,
               private _ctrl: ModalController, private _data: DataComponent, private _alert: AlertComponent, 
-             private _http: HttpClient) {
-            
+             private _http: HttpClient, private _config: Config) {
+
   }
 
   registerUser(){
