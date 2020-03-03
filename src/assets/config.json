@@ -1,6 +1,9 @@
 {
-    
     "api_url": "http://localhost/",
     "notifications": 2000,
-    "version": "v1.0.0.a"
+    "version": "v1.0.0.a",
+    "title1": "Couch",
+    "title2": "Potato",
+    "logolarge": "/assets/imgs/couch-potato-main.png",
+    "logosmall": "/assets/imgs/couch-potato.png"
 }

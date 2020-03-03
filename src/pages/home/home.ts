@@ -25,6 +25,11 @@ export class HomePage {
       setInterval(() => {
         this.localtime = Date.now().toString();
       });
+
+      // get rid of menu if nothings clicked after 10 seconds
+      setInterval(() => {
+         this.showMenu = false;
+         }, 10000);
   }
 
   openReplay(){
@@ -42,6 +47,16 @@ personClick(){
   // toggle profile menu
   if(this.showMenu){this.showMenu = false;}
   else{this.showMenu = true;}
+}
+
+hideMenu(){
+  //alert('here');
+  this.showMenu = false;
+}
+
+displayMenu(){
+  //alert('here');
+  this.showMenu = true;
 }
 
 changePassword(){

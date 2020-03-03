@@ -1,7 +1,7 @@
 
-<ion-header style="width: 100%">   
+<ion-header style="width: 100%" >   
      
-    <ion-title text-left class="maintitle">
+    <ion-title text-left class="maintitle" >
         <ion-grid style="padding: 0px 0px 0px 30px">
             <ion-row no-padding>
                 <ion-col col-4>
@@ -18,12 +18,12 @@
                             <ion-icon  name="redo"></ion-icon>
                         </button>
                     </ion-col>
-                <ion-col col-2 text-right>
+                <ion-col col-2 text-right >
                     <ion-row class="thin-row">
-                          <ion-col class = "small-icon">
+                          <ion-col class = "small-icon" >
                               <div (click)='personClick()' class = "person" ><ion-icon item-start name="person"> </ion-icon> &nbsp;{{user.username}}</div>
-                              <div  *ngIf="showMenu == true" >
-                                  <ion-grid >
+                                <div  *ngIf="showMenu == true" >
+                                  <ion-grid  >
                                         <ion-row >
                                             <ion-col  col-3></ion-col>
                                             <ion-col (click)='changePassword()' class="menu-col menu-list" col-9>
