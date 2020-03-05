@@ -64,16 +64,18 @@ calendar {
     }
 
     .cell-today{
-        text-align: center;
-        font-weight: bold;
-        color: red;
-        border-radius: 20px;
-        background-color: black;
-        font-size: 14pt;
+      //  font-weight: bold;
+       // color: red;
+       // font-size: 14pt;
     }
 
-    .cel-normal{
-        text-align: left;
+    .dayCircle{
+        text-align: center;
+        padding: 5px;
+        font-weight: bold;
+        color: white;
+        background-color: red;;
+        font-size: 12pt;
     }
 
 }

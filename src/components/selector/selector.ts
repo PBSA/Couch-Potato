@@ -30,7 +30,6 @@ export class SelectorComponent {
   private zoneOffset: number;
   private note = new Notifications;
 
-
   constructor(navParams: NavParams, 
               public navCtrl: NavController, private viewCtrl: ViewController, private user:UserComponent,
               private _data: DataComponent, private _alert: AlertComponent) {
@@ -133,6 +132,7 @@ export class SelectorComponent {
       putData.start_time = new Date(this.date + " " + this.starttime).toISOString();
       // lose the last precision
       putData.start_time = putData.start_time.substring(0,19) +"Z";
+      this.putData.start_time = putData.start_time;
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error
@@ -312,6 +312,7 @@ export class SelectorComponent {
             this.lastGameId = lastgameid;
             if(this.lastGameId.id == null){
                 // delete event
+                // alert(this.activeLeague.name);
                 this.putEvent.action = "delete";
                 this.putEvent.date = this.date;
                 this.putEvent.league = this.activeLeague.name;
@@ -335,7 +336,7 @@ export class SelectorComponent {
     this.putData.home = game.hometeam.trim();
     this.putData.away = game.awayteam.trim();
     this.putData.start_time = game.datetime;
-    this.putData.start_time = this.putData.start_time.replace(/ /g, "T") + ":00.000Z";
+    this.putData.start_time = this.putData.start_time.replace(/ /g, "T") + ":00Z";
     this.putData.match_id = game.gameid;
   }
 

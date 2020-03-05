@@ -48,29 +48,34 @@ export class MainPage {
     
     // first get the record that matches the username.
     this._data.getUser(this._user.username).subscribe(user =>{
-      userdata = user;
-      if(Object.keys(userdata).length == 0){
-        this._alert.showError("Error", "Invalid username or password")
-        return;
-      }
-      else{
-        // encrypt password with salt and compare.
-        this._user.salt = userdata[0].salt;
-        var password1 = userdata[0].password;
-        var password2 = Crypto.sha512_256(this._user.password + this._user.salt);
+            userdata = user;
+            if(Object.keys(userdata).length == 0){
+              this._alert.showError("Error", "Invalid username or password")
+              return;
+            }
+            else{
+              // encrypt password with salt and compare.
+              this._user.salt = userdata[0].salt;
+              var password1 = userdata[0].password;
+              var password2 = Crypto.sha512_256(this._user.password + this._user.salt);
 
-        if(password1 === password2){
-          // success
-          this._user.id = userdata[0].id;
-          this._user.username = userdata[0].username;
-          this._user.password  = password1;
-          this.navCtrl.push(HomePage);
-        }
-        else{
-          this._alert.showError("Error", "Invalid username or password");
-        }
-      }         
-    });
+              if(password1 === password2){
+                // success
+                this._user.id = userdata[0].id;
+                this._user.username = userdata[0].username;
+                this._user.password  = password1;
+                this.navCtrl.push(HomePage);
+              }
+              else{
+                this._alert.showError("Error: ", "Invalid username or password");
+              }
+            }        
+        },
+        error => { // trap server errors
+          console.log(error);
+          this._alert.showError("Error: Unable to log in", "[504] " + error.message);
+      },
+    );
   }
 
 }

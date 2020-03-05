@@ -19,7 +19,9 @@ export class DataComponent{
             this.configFile = data;
             this.url = this.configFile.api_url;
             _config.api_url = this.url;
-            _config.notifications = this.configFile.notifications;
+            _config.notifications.delay = this.configFile.notifications.delay;
+            _config.notifications.start = this.configFile.notifications.start;
+            _config.notifications.end = this.configFile.notifications.end;
             _config.version = this.configFile.version;
             _config.title1 = this.configFile.title1;
             _config.title2 = this.configFile.title2;

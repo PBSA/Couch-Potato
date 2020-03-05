@@ -1,6 +1,11 @@
 {
     "api_url": "http://localhost/",
-    "notifications": 2000,
+    "notifications": 
+            {
+                "delay": 2000,
+                "start": 240,
+                "end": 36
+            },
     "version": "v1.0.0.a",
     "title1": "Couch",
     "title2": "Potato",

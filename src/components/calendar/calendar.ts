@@ -109,9 +109,8 @@ export class CalendarComponent {
      if(month.length == 1){month = "0" + month}
      if(hour.length == 1){hour = "0" + hour}
      if(minute.length == 1){minute = "0" + minute}
-    return dateTime.getFullYear() + "-" + month + "-" + day;// + "T" + hour + ":" + minute;
+    return dateTime.getFullYear() + "-" + month + "-" + day;
 }
-
 
   loadGamesByDate(){
       // load games date for the current month on the calendar and the current league
@@ -122,10 +121,8 @@ export class CalendarComponent {
       var numgames: number = 0;
       var game: any
     
-      for(counter=0; counter <= this.dayCount; counter++){ 
-        
+      for(counter=0; counter <= this.dayCount; counter++){  
           for(game of this.allGames){
-          
               // need to adjust game dates from UTC back to local time
                 var newdate: Date= this.getLocalDay(game);
                 var day: number = newdate.getDate();
@@ -211,8 +208,6 @@ export class CalendarComponent {
      this.timeRange.start = this.convertDateTime(timeStart);
      var timeEnd = timeStart;
 
-     
-
      // adjust for leap year
      this.isLeapYear();
      
@@ -263,8 +258,7 @@ export class CalendarComponent {
     var calendarDate: string = day + "/" + month + "/" + this.selectedYear;
     var date = new Date();
     var today: string = date.getDate().toString() + "/" + date.getMonth().toString() + "/" + date.getFullYear().toString();
-    if (calendarDate == today){return true;}
-    else{return false}
+    return (calendarDate==today);
   }
 
   isBlank(x:number , y:number){

@@ -1,0 +1,9 @@
+{
+    "api_url": "http://localhost/",
+    "notifications": 2000,
+    "version": "v1.0.0.a",
+    "title1": "Mr Potato",
+    "title2": "Head",
+    "logolarge": "/assets/imgs/potato-head-main.png",
+    "logosmall": "/assets/imgs/potato-head.png"
+}

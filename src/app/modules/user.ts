@@ -10,8 +10,14 @@ export class UserComponent {
     password: string = '';
 }
 
+export class Notifications{
+    delay: number;
+    start: number;
+    end: number;
+}
+
 export class Config{
-    notifications: string = '';
+    notifications = new Notifications;
     api_url: string = '';
     version: string = '';
     title1: string = '';

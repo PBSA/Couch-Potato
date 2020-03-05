@@ -31,7 +31,7 @@ export class NotificationsComponent {
     setInterval(() => {
       // update notifications;
       this.createNotifications();
-        }, Number(config.notifications));
+        }, Number(config.notifications.delay));
 
     setInterval(() => {
      //refresh notifications queue every 10 seconds.
@@ -73,8 +73,8 @@ export class NotificationsComponent {
     // start search at 10 days past
     start.setHours(today.getHours()-(24*10));
 
-    // end search at 24 hours ahead
-    end.setHours(end.getHours()+24);
+    // end search at 36 hours ahead
+    end.setHours(end.getHours()+36);
    
     // convert to same format as stored data.
     var startDate  = this.convertDateTime(start);
@@ -93,6 +93,7 @@ export class NotificationsComponent {
             // first create notifications for games that start within one hour or less
             game.datetime = gametime;
             if(game.name == "Not Started"){
+           
                 if(diffTime < 0){priority = 'note note-high', this.addNote(game,priority, "SHOULD HAVE STARTED")};
                 if (diffTime >= 0 && diffTime < 15){priority = 'note note-medium', this.addNote(game,priority, "STARTS IN " + Math.round(diffTime) + " MINUTES")};
                 if (diffTime >= 15 && diffTime < 30){priority = 'note note-low', this.addNote(game,priority, "STARTS IN " + Math.round(diffTime) + " MINUTES")};

@@ -41,30 +41,28 @@ export class HomePage {
     let selectormodal = await this.modalCtrl.create(ReplayComponent,null,
         {cssClass: "replay-modal"});
     return await selectormodal.present();
-}
-
-personClick(){
-  // toggle profile menu
-  if(this.showMenu){this.showMenu = false;}
-  else{this.showMenu = true;}
-}
-
-
-changePassword(){
-  this.showMenu = false;
-    this.passwordModal();
   }
 
-async passwordModal() {
-    let selectormodal = await this.modalCtrl.create(PasswordComponent,null,
-        {cssClass: "password-modal"});
-    return await selectormodal.present();
+  personClick(){
+    // toggle profile menu
+    if(this.showMenu){this.showMenu = false;}
+    else{this.showMenu = true;}
+  }
 
-}
+  changePassword(){
+    this.showMenu = false;
+      this.passwordModal();
+    }
 
-logOut(): void {
-  // go to main page
-  this.showMenu = false;
-  this.navCtrl.pop();
+  async passwordModal() {
+      let selectormodal = await this.modalCtrl.create(PasswordComponent,null,
+          {cssClass: "password-modal"});
+      return await selectormodal.present();
+  }
+
+  logOut(): void {
+    // go to main page
+    this.showMenu = false;
+    this.navCtrl.pop();
   }
 }

@@ -39,13 +39,12 @@
                 <ion-row>
                     <div *ngFor="let day of days let y = index" [class]="getDay(x,y) > 0 ? 'day-cell' : 'no-cell'" (click)="openSelector(x,y)">
                        <!--Don't show cell if no date-->
-                       <div *ngIf = "getDay(x,y) > 0"   >
-                      
+                       <div *ngIf = "getDay(x,y) > 0"  >
                             <ion-col no-padding>
                                 <ion-row >
                                     <ion-col col-6 no-padding >
-                                      <ion-item no-lines [class] = "isToday(x,y) ? 'cell-today' : 'cell-normal'"  >
-                                            {{dayCounter}}
+                                      <ion-item no-lines [class] = "isToday(x,y) ? '' : 'cell-normal'">
+                                            <span [class] = "isToday(x,y) ? 'dayCircle' : 'cell-normal'">{{dayCounter}}</span>
                                       </ion-item>
                                     </ion-col>
                                     <ion-col col-6></ion-col>
