@@ -63,18 +63,14 @@ calendar {
         cursor: default;
     }
 
-    .cell-today{
-      //  font-weight: bold;
-       // color: red;
-       // font-size: 14pt;
-    }
 
     .dayCircle{
         text-align: center;
         padding: 5px;
         font-weight: bold;
         color: white;
-        background-color: red;;
+        background-color:orange;
+        border-radius: 10px;
         font-size: 12pt;
     }
 

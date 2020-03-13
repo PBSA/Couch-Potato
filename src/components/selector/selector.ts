@@ -229,6 +229,7 @@ export class SelectorComponent {
       this.putData.call = 'in_progress';
       this.getMandatoryData(game);
       this.putData.whistle_start_time = new Date().toISOString();  
+      game.whistle_start_time = this.putData.whistle_start_time;
       this._data.startGame(this.putData).subscribe(data=>{
         retval = data;
         if(retval.status != "200"){ // error
@@ -264,6 +265,7 @@ export class SelectorComponent {
             // finish game since I don't think the result can be changed anyway!!
           this.putData.call= 'finish';
           this.putData.whistle_start_time = game.whistle_start_time;
+          console.log(game.whistle_start_time);
           this.putData.whistle_end_time = new Date().toISOString();   
           this._data.finishGame(this.putData).subscribe(data=>{
             retval = data;
