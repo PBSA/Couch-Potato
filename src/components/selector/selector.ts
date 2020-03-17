@@ -265,7 +265,6 @@ export class SelectorComponent {
             // finish game since I don't think the result can be changed anyway!!
           this.putData.call= 'finish';
           this.putData.whistle_start_time = game.whistle_start_time;
-          console.log(game.whistle_start_time);
           this.putData.whistle_end_time = new Date().toISOString();   
           this._data.finishGame(this.putData).subscribe(data=>{
             retval = data;
