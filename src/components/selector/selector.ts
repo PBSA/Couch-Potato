@@ -229,6 +229,7 @@ export class SelectorComponent {
       this.putData.call = 'in_progress';
       this.getMandatoryData(game);
       this.putData.whistle_start_time = new Date().toISOString();  
+      game.whistle_start_time = this.putData.whistle_start_time;
       this._data.startGame(this.putData).subscribe(data=>{
         retval = data;
         if(retval.status != "200"){ // error

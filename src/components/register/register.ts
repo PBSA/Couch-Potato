@@ -40,11 +40,11 @@ export class RegisterComponent {
     if(this.password == ""){this._alert.showError("Error", "Password not entered"); return};
     if(this.password.length < 8){this._alert.showError("Error", "Password must be at least 8 characters"); return};
     if(this.confirmPassword == ""){this._alert.showError("Error", "Confirm Password not entered"); return};
-    if(this.email == ""){this._alert.showError("Error", "Email not entered"); return};
+    /*if(this.email == ""){this._alert.showError("Error", "Email not entered"); return};
     if(!this.emailIsValid(this.email)){
       this._alert.showError("Error", "Email is not valid"); 
       return
-    }
+    }*/
     if(this.password != this.confirmPassword){
       this._alert.showError("Error", "Password and Confirm Password are different"); 
       this.confirmPassword="";
@@ -61,11 +61,8 @@ export class RegisterComponent {
     userData.password  = Crypto.sha512_256(this.password + userData.salt);
     userData.email = this.email;
     this._data.addUser(userData).subscribe(data=>{
-      this._alert.showSuccess("Registration Complete", "A verification email has been sent to " + this.email);   
+      this._alert.showSuccess("Registration Complete", "");   
     });
-
-    //this._data.verifyUser(userData).subscribe(data=>{});
-   
     this.viewCtrl.dismiss();
   }
 

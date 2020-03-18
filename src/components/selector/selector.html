@@ -64,13 +64,13 @@
                         <img class="teams" [src]="getTeamIcon(event.awayteam)" >  
                     </ion-col >
                     <ion-col style="max-width: 6%;">                  
-                            <ion-input [(ngModel)] = "event.homescore" no-padding type="number" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>  
+                            <ion-input [(ngModel)] = "event.homescore" no-padding type="tel" pattern="[0-9]" maxlength="3" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>  
                     </ion-col>
                     <ion-col style="max-width: 5%; text-align: center">
                             <ion-icon style="padding-top: 20px; padding-right: 10px" name="remove"></ion-icon>
                     </ion-col>
                     <ion-col style="max-width: 6%">
-                            <ion-input  [(ngModel)] = "event.awayscore" type="number" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>
+                            <ion-input  [(ngModel)] = "event.awayscore" type="tel" pattern="[0-9]" maxlength="3" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>
                     </ion-col>
                     <ion-col style="max-width: 10%; text-align:center">
                         <div *ngIf="isVisible(event) == false">
