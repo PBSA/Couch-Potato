@@ -114,6 +114,11 @@ export class DataComponent{
       .map( data =>  this.result = data);
     }
 
+    getActiveState(userid: string){
+      return this.http.get(this.url + "get_active_state.php", {params:{userid: userid}})
+      .map( data =>  this.result = data);
+    }
+
     getLeagueDataByName(league: string){
       return this.http.get(this.url + "get_league_data_by_name.php", {params:{league: league}})
       .map( data =>  this.result = data);

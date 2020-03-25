@@ -133,6 +133,7 @@ export class SelectorComponent {
       // lose the last precision
       putData.start_time = putData.start_time.substring(0,19) +"Z";
       this.putData.start_time = putData.start_time;
+     
       this._data.addGame(putData).subscribe(result =>{
           retval = result;
           if(retval.status != "200"){ // error

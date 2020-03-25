@@ -54,6 +54,12 @@ export class MainPage {
               return;
             }
             else{
+              // is the user active yet
+              if(userdata[0].active == 'False'){
+                this._alert.showError("Error", "Account is not yet active")
+                return;
+              }
+
               // encrypt password with salt and compare.
               this._user.salt = userdata[0].salt;
               var password1 = userdata[0].password;
