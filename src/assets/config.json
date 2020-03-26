@@ -1,5 +1,5 @@
 {
-    "api_url": "http://35.182.190.80/",
+    "api_url": "https://localhost/couch-potato/",
     "notifications": 
             {
                 "delay": 2000,

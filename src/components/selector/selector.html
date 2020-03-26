@@ -29,13 +29,13 @@
                     Game
                 </ion-col>
                 <ion-col style="max-width: 7%;font-size: 9pt;">
-                        Home Score
+                        Away Score
                 </ion-col>
                 <ion-col style="max-width: 4%">
                         
                 </ion-col>
                 <ion-col style="max-width: 7%;font-size: 9pt;">
-                        Away Score
+                        Home Score
                 </ion-col>
                 <ion-col style="max-width: 15%">
                         Actions
@@ -59,18 +59,18 @@
                         {{getLocalStartTime(event)}}
                     </ion-col>
                     <ion-col [class]="isSelected(event) ? 'col-teams-selected' : 'col-teams'" >
-                        <img class="teams" [src]="getTeamIcon(event.hometeam)">
-                                {{event.hometeam}}  v {{event.awayteam}} 
-                        <img class="teams" [src]="getTeamIcon(event.awayteam)" >  
+                        <img class="teams" [src]="getTeamIcon(event.awayteam)">
+                                {{event.awayteam}}  v {{event.hometeam}} 
+                        <img class="teams" [src]="getTeamIcon(event.hometeam)" >  
                     </ion-col >
                     <ion-col style="max-width: 6%;">                  
-                            <ion-input [(ngModel)] = "event.homescore" no-padding type="tel" pattern="[0-9]" maxlength="3" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>  
+                            <ion-input [(ngModel)] = "event.awayscore" no-padding type="tel" pattern="[0-9]" maxlength="3" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>  
                     </ion-col>
                     <ion-col style="max-width: 5%; text-align: center">
                             <ion-icon style="padding-top: 20px; padding-right: 10px" name="remove"></ion-icon>
                     </ion-col>
                     <ion-col style="max-width: 6%">
-                            <ion-input  [(ngModel)] = "event.awayscore" type="tel" pattern="[0-9]" maxlength="3" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>
+                            <ion-input  [(ngModel)] = "event.homescore" type="tel" pattern="[0-9]" maxlength="3" [class] = "getCanScore(event)" [disabled] = !scoreDisabled(event)></ion-input>
                     </ion-col>
                     <ion-col style="max-width: 10%; text-align:center">
                         <div *ngIf="isVisible(event) == false">
@@ -107,8 +107,8 @@
                     <ion-col col-4 style="padding-top: 15px">
                             <ion-list>   
                                 <ion-item no-lines class="team-item">
-                                    <ion-label style="max-width:80px; color:black; font-size: 10pt;" no-padding >Home Team:</ion-label>
-                                        <ion-select   [(ngModel)] = "hometeam" interface="action-sheet" class="team-input">
+                                    <ion-label style="max-width:80px; color:black; font-size: 10pt;" no-padding >Away Team:</ion-label>
+                                        <ion-select   [(ngModel)] = "awayteam" interface="action-sheet" class="team-input">
                                             <ion-option *ngFor="let team of teams">
                                                 {{team.name}}
                                             </ion-option>
@@ -120,8 +120,8 @@
                     <ion-col col-4 style="padding-top: 15px">
                             <ion-list>   
                                 <ion-item no-lines class="team-item">
-                                    <ion-label class="ion-text-wrap" style="max-width:80px; color:black; font-size: 10pt;">Away Team:</ion-label>
-                                        <ion-select   [(ngModel)] = "awayteam"  interface="action-sheet" class="team-input">
+                                    <ion-label class="ion-text-wrap" style="max-width:80px; color:black; font-size: 10pt;">Home Team:</ion-label>
+                                        <ion-select   [(ngModel)] = "hometeam"  interface="action-sheet" class="team-input">
                                             <ion-option *ngFor="let team of teams">
                                                 {{team.name}}
                                             </ion-option>

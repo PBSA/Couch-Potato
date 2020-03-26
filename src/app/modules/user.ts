@@ -8,6 +8,7 @@ export class UserComponent {
     username: string = '';
     salt: string = '';
     password: string = '';
+    active: string = 'false';
 }
 
 export class Notifications{

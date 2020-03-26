@@ -1,0 +1,28 @@
+stages:
+  - build
+  - deploy
+
+build:
+  image: node:12 
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  cache:
+    paths:
+      - www
+  artifacts:
+    paths:
+      - www
+  tags:
+    - docker
+  
+deployToDev:
+  stage: deploy
+  script:
+    - cp -R ./www/* /var/www/Couch-Potato
+    - deployGUI
+  only:
+    - develop
+  tags:
+    - cp-dev
