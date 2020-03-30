@@ -118,6 +118,10 @@ export class SelectorComponent {
       if(this.awayteam == ""){this._alert.showError("Add Game Error", "No away team selected");return;}
       if(this.awayteam == this.hometeam){this._alert.showError("Add Game Error", "Teams must be different");return;}
       if(this.starttime == ""){this._alert.showError("Add Game Error", "No start time selected");return;}
+      // is start time in the past
+      var gametime = new Date(this.date + " " + this.starttime).toISOString();
+      if(gametime < new Date().toISOString()){this._alert.showError("Add Game Error", "Start time can't be in the past");return;}
+     
 
       var putData:any = {};
       var retval: any;
@@ -344,7 +348,7 @@ export class SelectorComponent {
 
   canCancel(game: any): string{
     // not all statuses can be cancelled
-    if(game.name == "Not Started" || game.name == "In Progress"){return "Cancel"}
+    if(game.name == "Not Started" || game.name == "In Progress"){return "Cancel / Postpone"}
     return "";
   }
 
